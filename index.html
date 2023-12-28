@@ -1,184 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pengerhåndteringsspill</title>
-    <style>
-        body {
-            text-align: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #282c34;
-            color: #61dafb;
-            margin: 50px;
-        }
-
-        h1 {
-            color: #61dafb;
-        }
-
-        #money {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #61dafb;
-        }
-
-        .btn {
-            font-size: 16px;
-            padding: 10px 20px;
-            cursor: pointer;
-            margin: 0 10px;
-            border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .btn-can-afford {
-            background-color: #61dafb;
-            color: #282c34;
-        }
-
-        .btn-cannot-afford {
-            background-color: #e74c3c;
-            color: #ffffff;
-        }
-
-        .btn:hover {
-            background-color: #45a9d3;
-        }
-
-        .upgrade-box {
-            color: #282c34;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 10px;
-            width: 150px;
-            transition: background-color 0.3s;
-        }
-
-        .upgrade-box-can-afford {
-            background-color: #61dafb;
-        }
-
-        .upgrade-box-cannot-afford {
-            background-color: #e74c3c;
-            color: #ffffff;
-        }
-
-        .upgrade-box:hover {
-            background-color: #3689b7;
-        }
-
-        #jobBtn {
-            margin-top: 20px;
-        }
-
-        #propertyBtn {
-            margin-top: 20px;
-        }
-
-        .job-image,
-        .property-image {
-            width: 100px;
-            height: 100px;
-            border-radius: 5px;
-            margin: 10px;
-            display: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Pølsebutikk Incremental Game</title>
 </head>
 <body>
-    <h1>Pengerhåndteringsspill</h1>
-    <div>
-        <p>Penger: <span id="money">0</span></p>
-        <button id="jobBtn" class="btn btn-can-afford">Få en jobb</button>
-        <button id="propertyBtn" class="btn btn-can-afford">Kjøp eiendom</button>
-        <button id="resetBtn" class="btn">Tilbakestill</button>
-    </div>
+  <div id="game-container">
+    <h1>Pølsebutikk Incremental Game</h1>
+    <p>Velkommen, <span id="username">spiller</span>!</p>
+    <p>Pølser: <span id="sausage-count">0</span></p>
+    <button onclick="buySausage()">Kjøp pølse</button>
+    <h2>Oppgraderinger</h2>
+    <button onclick="upgradeSausage()">Oppgrader pølse</button>
+  </div>
 
-    <div id="shop">
-        <div class="upgrade-box upgrade-box-can-afford" id="buyUpgrade1Btn">Oppgradering 1<br>Pris: 10</div>
-        <div class="upgrade-box upgrade-box-can-afford" id="buyUpgrade2Btn">Oppgradering 2<br>Pris: 20</div>
-    </div>
-
-    <div id="upgradeImages"></div>
-
-    <script>
-        let money = parseInt(localStorage.getItem('money')) || 0;
-        let jobIncome = 5; // Inntekt per sekund fra jobben
-        let propertyIncome = 10; // Inntekt per sekund fra eiendommen
-
-        document.getElementById('money').innerText = money;
-
-        function updateMoney() {
-            money += jobIncome + propertyIncome;
-            document.getElementById('money').innerText = money;
-            updateButtonStatus();
-            localStorage.setItem('money', money.toString());
-        }
-
-        function resetGame() {
-            money = 0;
-            jobIncome = 5;
-            propertyIncome = 10;
-            document.getElementById('money').innerText = money;
-            updateButtonStatus();
-            localStorage.setItem('money', money.toString());
-        }
-
-        function updateButtonStatus() {
-            const canAffordJob = true; // Jobben er alltid tilgjengelig
-            const canAffordProperty = money >= 50; // Eiendommen er tilgjengelig når du har 50 eller mer penger
-
-            const jobBtn = document.getElementById('jobBtn');
-            jobBtn.classList.toggle('btn-can-afford', canAffordJob);
-            jobBtn.classList.toggle('btn-cannot-afford', !canAffordJob);
-
-            const propertyBtn = document.getElementById('propertyBtn');
-            propertyBtn.classList.toggle('btn-can-afford', canAffordProperty);
-            propertyBtn.classList.toggle('btn-cannot-afford', !canAffordProperty);
-        }
-
-        function showUpgradeImage(imageUrl, className) {
-            const upgradeImagesDiv = document.getElementById('upgradeImages');
-            const imageElement = document.createElement('img');
-            imageElement.src = imageUrl;
-            imageElement.alt = 'Oppgradering bilde';
-            imageElement.classList.add(className);
-            upgradeImagesDiv.appendChild(imageElement);
-
-            setTimeout(() => {
-                imageElement.style.display = 'none';
-            }, 3000);
-        }
-
-        document.getElementById('jobBtn').addEventListener('click', function() {
-            money += 100; // Penger du tjener fra jobben
-            updateMoney();
-        });
-
-        document.getElementById('propertyBtn').addEventListener('click', function() {
-            if (money >= 50) {
-                money -= 50;
-                propertyIncome += 5;
-                document.getElementById('money').innerText = money;
-                alert('Eiendom kjøpt! Passiv inntekt per sekund: ' + propertyIncome);
-                showUpgradeImage('property.jpg', 'property-image'); // Legg til banen til ditt eget bilde
-                updateButtonStatus();
-                localStorage.setItem('money', money.toString());
-            } else {
-                alert('Ikke nok penger til å kjøpe eiendom.');
-            }
-        });
-
-        document.getElementById('resetBtn').addEventListener('click', function() {
-            resetGame();
-        });
-
-        // Oppdater passiv inntekt hvert sekund
-        setInterval(function() {
-            updateMoney();
-        }, 1000);
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
