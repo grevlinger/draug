@@ -4,22 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <title>Pølsebutikk Incremental Game</title>
+  <title>Pølse Selger Idle Game</title>
 </head>
 <body>
-  <!-- Legg til denne delen i body-taggen -->
-<div id="user-scores">
-  <h2>Brukernavn og Poengscore</h2>
-  <ul id="user-list"></ul>
-</div>
-
   <div id="game-container">
-    <h1>Pølsebutikk Incremental Game</h1>
+    <h1>Pølse Selger Idle Game</h1>
     <p>Velkommen, <span id="username">spiller</span>!</p>
     <p>Pølser: <span id="sausage-count">0</span></p>
-    <button onclick="buySausage()">Kjøp pølse</button>
-    <h2>Oppgraderinger</h2>
-    <button onclick="upgradeSausage()">Oppgrader pølse</button>
+    <p>Pølser per sekund: <span id="sausage-per-sec">0</span></p>
+    <button onclick="buySausageStand()">Kjøp Pølsestand</button>
   </div>
 
   <script src="script.js"></script>
