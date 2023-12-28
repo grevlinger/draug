@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skaffe me nå shilling</title>
+    <title>Kongen tå Kvam</title>
     <style>
         body {
             text-align: center;
@@ -68,20 +68,36 @@
         .upgrade-box:hover {
             background-color: #3689b7;
         }
+
+        #upgradeImages {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .upgrade-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            margin: 10px;
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <h1>Orke itte arbeie</h1>
+    <h1>Kongen tå Kvam</h1>
     <div>
-        <p>Shilling: <span id="money">0</span></p>
-        <button id="clickBtn" class="btn btn-can-afford">Få shilling</button>
+        <p>Tjen nå shelling: <span id="money">0</span></p>
+        <button id="clickBtn" class="btn btn-can-afford">Klikk meg!</button>
         <button id="resetBtn" class="btn">Tilbakestill</button>
     </div>
 
     <div id="shop">
-        <div class="upgrade-box upgrade-box-can-afford" id="buyUpgrade1Btn">Oppgradering 1<br>Pris: 10</div>
-        <div class="upgrade-box upgrade-box-can-afford" id="buyUpgrade2Btn">Oppgradering 2<br>Pris: 20</div>
+        <div class="upgrade-box upgrade-box-can-afford" id="buyUpgrade1Btn">Mær shelling når e trykke<br>Pris: 10</div>
+        <div class="upgrade-box upgrade-box-can-afford" id="buyUpgrade2Btn">Kiwi Kvam<br>Pris: 20</div>
     </div>
+
+    <div id="upgradeImages"></div>
 
     <script>
         let money = parseInt(localStorage.getItem('money')) || 0;
@@ -130,6 +146,19 @@
             upgrade2Btn.classList.toggle('upgrade-box-cannot-afford', !canAffordUpgrade2);
         }
 
+        function showUpgradeImage(imageUrl) {
+            const upgradeImagesDiv = document.getElementById('upgradeImages');
+            const imageElement = document.createElement('img');
+            imageElement.src = imageUrl;
+            imageElement.alt = 'Oppgradering bilde';
+            imageElement.classList.add('upgrade-image');
+            upgradeImagesDiv.appendChild(imageElement);
+
+            setTimeout(() => {
+                imageElement.style.display = 'none';
+            }, 3000);
+        }
+
         document.getElementById('clickBtn').addEventListener('click', function() {
             updateMoney();
         });
@@ -146,6 +175,7 @@
                 document.getElementById('money').innerText = money;
                 alert('Oppgradering 1 kjøpt! Passiv inntekt per sekund: 2');
                 updateButtonStatus();
+                showUpgradeImage('oppgradering1.jpg'); // Legg til banen til ditt eget bilde
                 localStorage.setItem('money', money.toString());
             } else {
                 alert('Ikke nok penger til å kjøpe oppgradering 1.');
@@ -160,6 +190,7 @@
                 document.getElementById('money').innerText = money;
                 alert('Oppgradering 2 kjøpt! Passiv inntekt per sekund: 5');
                 updateButtonStatus();
+                showUpgradeImage('oppgradering2.jpg'); // Legg til banen til ditt eget bilde
                 localStorage.setItem('money', money.toString());
             } else {
                 alert('Ikke nok penger til å kjøpe oppgradering 2.');
