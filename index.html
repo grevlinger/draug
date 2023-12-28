@@ -38,6 +38,21 @@
         .btn:hover {
             background-color: #45a9d3;
         }
+
+        #shop {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+
+        .upgrade-box {
+            background-color: #45a9d3;
+            color: #282c34;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px;
+            width: 150px;
+        }
     </style>
 </head>
 <body>
@@ -46,8 +61,11 @@
         <p>Penger: <span id="money">0</span></p>
         <button id="clickBtn" class="btn">Klikk meg!</button>
         <button id="resetBtn" class="btn">Tilbakestill</button>
-        <button id="buyUpgrade1Btn" class="btn">Kjøp oppgradering 1</button>
-        <button id="buyUpgrade2Btn" class="btn">Kjøp oppgradering 2</button>
+    </div>
+
+    <div id="shop">
+        <div class="upgrade-box" id="buyUpgrade1Btn">Oppgradering 1<br>Pris: 10</div>
+        <div class="upgrade-box" id="buyUpgrade2Btn">Oppgradering 2<br>Pris: 20</div>
     </div>
 
     <script>
@@ -89,7 +107,7 @@
         document.getElementById('buyUpgrade1Btn').addEventListener('click', function() {
             if (money >= upgradeCost1) {
                 money -= upgradeCost1;
-                passiveIncome1 += 2; // Passiv inntekt per sekund for oppgradering 1
+                passiveIncome1 += 2;
                 upgradeCost1 *= 2;
                 document.getElementById('money').innerText = money;
                 alert('Oppgradering 1 kjøpt! Passiv inntekt per sekund: 2');
@@ -102,7 +120,7 @@
         document.getElementById('buyUpgrade2Btn').addEventListener('click', function() {
             if (money >= upgradeCost2) {
                 money -= upgradeCost2;
-                passiveIncome2 += 5; // Passiv inntekt per sekund for oppgradering 2
+                passiveIncome2 += 5;
                 upgradeCost2 *= 2;
                 document.getElementById('money').innerText = money;
                 alert('Oppgradering 2 kjøpt! Passiv inntekt per sekund: 5');
