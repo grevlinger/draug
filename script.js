@@ -1,37 +1,49 @@
 // Funksjoner for å håndtere spillet
 
-let username = prompt("Skriv inn brukernavn:");
+// ... (tidligere kode)
 
-if (!username) {
-  username = "spiller";
-}
+// Enkel brukerdatabase
+function saveUser(username, score) {
+  let users = JSON.parse(localStorage.getItem("users")) || [];
 
-let sausageCount = 0;
-let sausageUpgradeCost = 10;
-
-function updateUI() {
-  document.getElementById("username").innerText = username;
-  document.getElementById("sausage-count").innerText = sausageCount;
-}
-
-function buySausage() {
-  sausageCount++;
-  updateUI();
-}
-
-function upgradeSausage() {
-  if (sausageCount >= sausageUpgradeCost) {
-    sausageCount -= sausageUpgradeCost;
-    sausageUpgradeCost *= 2; // Enkel oppgraderingslogikk
-    updateUI();
-    alert("Pølsa er oppgradert!");
+  // Oppdater eller legg til brukeren med ny score
+  let existingUserIndex = users.findIndex(user => user.username === username);
+  if (existingUserIndex !== -1) {
+    users[existingUserIndex].score = score;
   } else {
-    alert("Du har ikke nok pølser for å oppgradere.");
+    users.push({ username, score });
   }
+
+  localStorage.setItem("users", JSON.stringify(users));
 }
 
-// Lagre brukernavn lokalt
-localStorage.setItem("username", username);
+// Hent og vis brukernavn og poengscore
+function displayUserScores() {
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  // Sorter brukerne etter poengscore i synkende rekkefølge
+  users.sort((a, b) => b.score - a.score);
+
+  // Oppdater listen i HTML
+  let userListElement = document.getElementById("user-list");
+  userListElement.innerHTML = "";
+  users.forEach(user => {
+    let listItem = document.createElement("li");
+    listItem.textContent = `${user.username}: ${user.score} poeng`;
+    userListElement.appendChild(listItem);
+  });
+}
+
+// ...
+
+// Oppdater poengscoren og vis oppdatert liste
+function updateScoreAndDisplay() {
+  saveUser(username, sausageCount);
+  displayUserScores();
+}
+
+// ...
 
 // Initialiser UI
 updateUI();
+displayUserScores();
