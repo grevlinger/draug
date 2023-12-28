@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kongen tå Kvam</title>
+    <title>Pengerhåndteringsspill</title>
     <style>
         body {
             text-align: center;
@@ -69,13 +69,16 @@
             background-color: #3689b7;
         }
 
-        #upgradeImages {
-            display: flex;
-            justify-content: space-around;
+        #jobBtn {
             margin-top: 20px;
         }
 
-        .upgrade-image {
+        #propertyBtn {
+            margin-top: 20px;
+        }
+
+        .job-image,
+        .property-image {
             width: 100px;
             height: 100px;
             border-radius: 5px;
@@ -85,33 +88,30 @@
     </style>
 </head>
 <body>
-    <h1>Kongen tå Kvam</h1>
+    <h1>Pengerhåndteringsspill</h1>
     <div>
-        <p>Tjen nå shelling: <span id="money">0</span></p>
-        <button id="clickBtn" class="btn btn-can-afford">Klikk meg!</button>
+        <p>Penger: <span id="money">0</span></p>
+        <button id="jobBtn" class="btn btn-can-afford">Få en jobb</button>
+        <button id="propertyBtn" class="btn btn-can-afford">Kjøp eiendom</button>
         <button id="resetBtn" class="btn">Tilbakestill</button>
     </div>
 
     <div id="shop">
-        <div class="upgrade-box upgrade-box-can-afford" id="buyUpgrade1Btn">Mær shelling når e trykke<br>Pris: 10</div>
-        <div class="upgrade-box upgrade-box-can-afford" id="buyUpgrade2Btn">Kiwi Kvam<br>Pris: 20</div>
+        <div class="upgrade-box upgrade-box-can-afford" id="buyUpgrade1Btn">Oppgradering 1<br>Pris: 10</div>
+        <div class="upgrade-box upgrade-box-can-afford" id="buyUpgrade2Btn">Oppgradering 2<br>Pris: 20</div>
     </div>
 
     <div id="upgradeImages"></div>
 
     <script>
         let money = parseInt(localStorage.getItem('money')) || 0;
-        let upgradeCost1 = 10;
-        let upgradeCost2 = 20;
-
-        let incomePerClick = 1;
-        let passiveIncome1 = 0;
-        let passiveIncome2 = 0;
+        let jobIncome = 5; // Inntekt per sekund fra jobben
+        let propertyIncome = 10; // Inntekt per sekund fra eiendommen
 
         document.getElementById('money').innerText = money;
 
         function updateMoney() {
-            money += incomePerClick + passiveIncome1 + passiveIncome2;
+            money += jobIncome + propertyIncome;
             document.getElementById('money').innerText = money;
             updateButtonStatus();
             localStorage.setItem('money', money.toString());
@@ -119,39 +119,32 @@
 
         function resetGame() {
             money = 0;
-            upgradeCost1 = 10;
-            upgradeCost2 = 20;
-            incomePerClick = 1;
-            passiveIncome1 = 0;
-            passiveIncome2 = 0;
+            jobIncome = 5;
+            propertyIncome = 10;
             document.getElementById('money').innerText = money;
             updateButtonStatus();
             localStorage.setItem('money', money.toString());
         }
 
         function updateButtonStatus() {
-            const canAffordUpgrade1 = money >= upgradeCost1;
-            const canAffordUpgrade2 = money >= upgradeCost2;
+            const canAffordJob = true; // Jobben er alltid tilgjengelig
+            const canAffordProperty = money >= 50; // Eiendommen er tilgjengelig når du har 50 eller mer penger
 
-            const clickBtn = document.getElementById('clickBtn');
-            clickBtn.classList.toggle('btn-can-afford', true);
-            clickBtn.classList.toggle('btn-cannot-afford', false);
+            const jobBtn = document.getElementById('jobBtn');
+            jobBtn.classList.toggle('btn-can-afford', canAffordJob);
+            jobBtn.classList.toggle('btn-cannot-afford', !canAffordJob);
 
-            const upgrade1Btn = document.getElementById('buyUpgrade1Btn');
-            upgrade1Btn.classList.toggle('upgrade-box-can-afford', canAffordUpgrade1);
-            upgrade1Btn.classList.toggle('upgrade-box-cannot-afford', !canAffordUpgrade1);
-
-            const upgrade2Btn = document.getElementById('buyUpgrade2Btn');
-            upgrade2Btn.classList.toggle('upgrade-box-can-afford', canAffordUpgrade2);
-            upgrade2Btn.classList.toggle('upgrade-box-cannot-afford', !canAffordUpgrade2);
+            const propertyBtn = document.getElementById('propertyBtn');
+            propertyBtn.classList.toggle('btn-can-afford', canAffordProperty);
+            propertyBtn.classList.toggle('btn-cannot-afford', !canAffordProperty);
         }
 
-        function showUpgradeImage() {
+        function showUpgradeImage(imageUrl, className) {
             const upgradeImagesDiv = document.getElementById('upgradeImages');
             const imageElement = document.createElement('img');
             imageElement.src = imageUrl;
             imageElement.alt = 'Oppgradering bilde';
-            imageElement.classList.add('upgrade-image');
+            imageElement.classList.add(className);
             upgradeImagesDiv.appendChild(imageElement);
 
             setTimeout(() => {
@@ -159,42 +152,27 @@
             }, 3000);
         }
 
-        document.getElementById('clickBtn').addEventListener('click', function() {
+        document.getElementById('jobBtn').addEventListener('click', function() {
+            money += 100; // Penger du tjener fra jobben
             updateMoney();
+        });
+
+        document.getElementById('propertyBtn').addEventListener('click', function() {
+            if (money >= 50) {
+                money -= 50;
+                propertyIncome += 5;
+                document.getElementById('money').innerText = money;
+                alert('Eiendom kjøpt! Passiv inntekt per sekund: ' + propertyIncome);
+                showUpgradeImage('property.jpg', 'property-image'); // Legg til banen til ditt eget bilde
+                updateButtonStatus();
+                localStorage.setItem('money', money.toString());
+            } else {
+                alert('Ikke nok penger til å kjøpe eiendom.');
+            }
         });
 
         document.getElementById('resetBtn').addEventListener('click', function() {
             resetGame();
-        });
-
-        document.getElementById('buyUpgrade1Btn').addEventListener('click', function() {
-            if (money >= upgradeCost1) {
-                money -= upgradeCost1;
-                passiveIncome1 += 2;
-                upgradeCost1 *= 2;
-                document.getElementById('money').innerText = money;
-                alert('Oppgradering 1 kjøpt! Passiv inntekt per sekund: 2');
-                updateButtonStatus();
-                showUpgradeImage('oppgradering1.jpg'); // Legg til banen til ditt eget bilde
-                localStorage.setItem('money', money.toString());
-            } else {
-                alert('Ikke nok penger til å kjøpe oppgradering 1.');
-            }
-        });
-
-        document.getElementById('buyUpgrade2Btn').addEventListener('click', function() {
-            if (money >= upgradeCost2) {
-                money -= upgradeCost2;
-                passiveIncome2 += 5;
-                upgradeCost2 *= 2;
-                document.getElementById('money').innerText = money;
-                alert('Oppgradering 2 kjøpt! Passiv inntekt per sekund: 5');
-                updateButtonStatus();
-                showUpgradeImage('oppgradering2.jpg'); // Legg til banen til ditt eget bilde
-                localStorage.setItem('money', money.toString());
-            } else {
-                alert('Ikke nok penger til å kjøpe oppgradering 2.');
-            }
         });
 
         // Oppdater passiv inntekt hvert sekund
