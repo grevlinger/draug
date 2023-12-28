@@ -16,11 +16,6 @@
             margin-bottom: 20px;
         }
 
-        #score {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
         .btn {
             font-size: 16px;
             padding: 10px 20px;
@@ -33,39 +28,38 @@
     <h1>Klikkerspill</h1>
     <div>
         <p>Penger: <span id="money">0</span></p>
-        <p>Score: <span id="score">0</span></p>
         <button id="clickBtn" class="btn">Klikk meg!</button>
-        <button id="resetBtn" class="btn">Tilbakestill score</button>
+        <button id="resetBtn" class="btn">Tilbakestill</button>
         <button id="buyUpgradeBtn" class="btn">Kjøp oppgradering</button>
     </div>
 
     <script>
+        function resetGame() {
+            money = 0;
+            upgradeCost = 10;
+            document.getElementById('money').innerText = money;
+            localStorage.setItem('money', money.toString());
+        }
+
         let money = parseInt(localStorage.getItem('money')) || 0;
-        let score = parseInt(localStorage.getItem('score')) || 0;
         let upgradeCost = 10;
 
         document.getElementById('money').innerText = money;
-        document.getElementById('score').innerText = score;
 
         document.getElementById('clickBtn').addEventListener('click', function() {
-            score++;
-            money += score; // Konverter score til penger
-            document.getElementById('score').innerText = score;
+            money++;
             document.getElementById('money').innerText = money;
-            localStorage.setItem('score', score.toString());
             localStorage.setItem('money', money.toString());
         });
 
         document.getElementById('resetBtn').addEventListener('click', function() {
-            score = 0;
-            document.getElementById('score').innerText = score;
-            localStorage.setItem('score', score.toString());
+            resetGame();
         });
 
         document.getElementById('buyUpgradeBtn').addEventListener('click', function() {
             if (money >= upgradeCost) {
                 money -= upgradeCost;
-                upgradeCost *= 2; // Øk kostnaden for neste oppgradering
+                upgradeCost *= 2;
                 document.getElementById('money').innerText = money;
                 alert('Oppgradering kjøpt! Kostnad for neste oppgradering: ' + upgradeCost);
                 localStorage.setItem('money', money.toString());
