@@ -11,13 +11,18 @@
             margin: 50px;
         }
 
-        #score {
+        #money {
             font-size: 24px;
             margin-bottom: 20px;
         }
 
-        .btn {
+        #score {
             font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            font-size: 16px;
             padding: 10px 20px;
             cursor: pointer;
             margin: 0 10px;
@@ -27,34 +32,46 @@
 <body>
     <h1>Klikkerspill</h1>
     <div>
+        <p>Penger: <span id="money">0</span></p>
         <p>Score: <span id="score">0</span></p>
         <button id="clickBtn" class="btn">Klikk meg!</button>
         <button id="resetBtn" class="btn">Tilbakestill score</button>
+        <button id="buyUpgradeBtn" class="btn">Kjøp oppgradering</button>
     </div>
 
     <script>
-        // Hent lagret score fra lokal lagring
+        let money = parseInt(localStorage.getItem('money')) || 0;
         let score = parseInt(localStorage.getItem('score')) || 0;
+        let upgradeCost = 10;
+
+        document.getElementById('money').innerText = money;
         document.getElementById('score').innerText = score;
 
-        // Legg til klikkelytter på knappen for å øke score
         document.getElementById('clickBtn').addEventListener('click', function() {
-            // Øk scoren
             score++;
-            // Oppdater visning av score
+            money += score; // Konverter score til penger
             document.getElementById('score').innerText = score;
-            // Lagre score i lokal lagring
+            document.getElementById('money').innerText = money;
+            localStorage.setItem('score', score.toString());
+            localStorage.setItem('money', money.toString());
+        });
+
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            score = 0;
+            document.getElementById('score').innerText = score;
             localStorage.setItem('score', score.toString());
         });
 
-        // Legg til klikkelytter på knappen for å tilbakestille score
-        document.getElementById('resetBtn').addEventListener('click', function() {
-            // Tilbakestill scoren til 0
-            score = 0;
-            // Oppdater visning av score
-            document.getElementById('score').innerText = score;
-            // Lagre score i lokal lagring
-            localStorage.setItem('score', score.toString());
+        document.getElementById('buyUpgradeBtn').addEventListener('click', function() {
+            if (money >= upgradeCost) {
+                money -= upgradeCost;
+                upgradeCost *= 2; // Øk kostnaden for neste oppgradering
+                document.getElementById('money').innerText = money;
+                alert('Oppgradering kjøpt! Kostnad for neste oppgradering: ' + upgradeCost);
+                localStorage.setItem('money', money.toString());
+            } else {
+                alert('Ikke nok penger til å kjøpe oppgraderingen.');
+            }
         });
     </script>
 </body>
