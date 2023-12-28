@@ -1,10 +1,4 @@
-let score = 0;
-
-// Hent lagret poengsum ved oppstart
-if (localStorage.getItem('score')) {
-    score = parseInt(localStorage.getItem('score'), 10);
-    updateScore();
-}
+let score = parseInt(localStorage.getItem('score')) || 0;
 
 function incrementScore() {
     score++;
@@ -20,3 +14,6 @@ function saveScore() {
     // Lagre poengsummen i lokal lagring
     localStorage.setItem('score', score.toString());
 }
+
+// Kall updateScore() ved oppstart for å vise eksisterende poengsum
+updateScore();
