@@ -46,43 +46,76 @@
         <p>Penger: <span id="money">0</span></p>
         <button id="clickBtn" class="btn">Klikk meg!</button>
         <button id="resetBtn" class="btn">Tilbakestill</button>
-        <button id="buyUpgradeBtn" class="btn">Kjøp oppgradering</button>
+        <button id="buyUpgrade1Btn" class="btn">Kjøp oppgradering 1</button>
+        <button id="buyUpgrade2Btn" class="btn">Kjøp oppgradering 2</button>
     </div>
 
     <script>
-        function resetGame() {
-            money = 0;
-            upgradeCost = 10;
+        let money = parseInt(localStorage.getItem('money')) || 0;
+        let upgradeCost1 = 10;
+        let upgradeCost2 = 20;
+
+        let incomePerClick = 1;
+        let passiveIncome1 = 0;
+        let passiveIncome2 = 0;
+
+        document.getElementById('money').innerText = money;
+
+        function updateMoney() {
+            money += incomePerClick + passiveIncome1 + passiveIncome2;
             document.getElementById('money').innerText = money;
             localStorage.setItem('money', money.toString());
         }
 
-        let money = parseInt(localStorage.getItem('money')) || 0;
-        let upgradeCost = 10;
-
-        document.getElementById('money').innerText = money;
-
-        document.getElementById('clickBtn').addEventListener('click', function() {
-            money++;
+        function resetGame() {
+            money = 0;
+            upgradeCost1 = 10;
+            upgradeCost2 = 20;
+            incomePerClick = 1;
+            passiveIncome1 = 0;
+            passiveIncome2 = 0;
             document.getElementById('money').innerText = money;
             localStorage.setItem('money', money.toString());
+        }
+
+        document.getElementById('clickBtn').addEventListener('click', function() {
+            updateMoney();
         });
 
         document.getElementById('resetBtn').addEventListener('click', function() {
             resetGame();
         });
 
-        document.getElementById('buyUpgradeBtn').addEventListener('click', function() {
-            if (money >= upgradeCost) {
-                money -= upgradeCost;
-                upgradeCost *= 2;
+        document.getElementById('buyUpgrade1Btn').addEventListener('click', function() {
+            if (money >= upgradeCost1) {
+                money -= upgradeCost1;
+                passiveIncome1 += 2; // Passiv inntekt per sekund for oppgradering 1
+                upgradeCost1 *= 2;
                 document.getElementById('money').innerText = money;
-                alert('Oppgradering kjøpt! Kostnad for neste oppgradering: ' + upgradeCost);
+                alert('Oppgradering 1 kjøpt! Passiv inntekt per sekund: 2');
                 localStorage.setItem('money', money.toString());
             } else {
-                alert('Ikke nok penger til å kjøpe oppgraderingen.');
+                alert('Ikke nok penger til å kjøpe oppgradering 1.');
             }
         });
+
+        document.getElementById('buyUpgrade2Btn').addEventListener('click', function() {
+            if (money >= upgradeCost2) {
+                money -= upgradeCost2;
+                passiveIncome2 += 5; // Passiv inntekt per sekund for oppgradering 2
+                upgradeCost2 *= 2;
+                document.getElementById('money').innerText = money;
+                alert('Oppgradering 2 kjøpt! Passiv inntekt per sekund: 5');
+                localStorage.setItem('money', money.toString());
+            } else {
+                alert('Ikke nok penger til å kjøpe oppgradering 2.');
+            }
+        });
+
+        // Oppdater passiv inntekt hvert sekund
+        setInterval(function() {
+            updateMoney();
+        }, 1000);
     </script>
 </body>
 </html>
