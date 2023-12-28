@@ -2,7 +2,7 @@ let score = 0;
 
 // Hent lagret poengsum ved oppstart
 if (localStorage.getItem('score')) {
-    score = parseInt(localStorage.getItem('score'));
+    score = parseInt(localStorage.getItem('score'), 10);
     updateScore();
 }
 
