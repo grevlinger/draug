@@ -3,18 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Pølse Selger Idle Game</title>
+  <title>Tress Kortspill</title>
 </head>
 <body>
-  <div id="game-container">
-    <h1>Pølse Selger Idle Game</h1>
-    <p>Velkommen, <span id="username">spiller</span>!</p>
-    <p>Pølser: <span id="sausage-count">0</span></p>
-    <p>Pølser per sekund: <span id="sausage-per-sec">0</span></p>
-    <button onclick="buySausageStand()">Kjøp Pølsestand</button>
-  </div>
+  <h1>Tress Kortspill</h1>
+  <p id="message">Trykk på "Trekk Kort" for å trekke et kort.</p>
+  <button onclick="drawCard()">Trekk Kort</button>
 
-  <script src="script.js"></script>
+  <script>
+    const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
+    const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
+    
+    let playerHand = [];
+
+    function drawCard() {
+      // Trekker et tilfeldig kort
+      const randomSuit = suits[Math.floor(Math.random() * suits.length)];
+      const randomRank = ranks[Math.floor(Math.random() * ranks.length)];
+      const card = `${randomRank} of ${randomSuit}`;
+
+      // Legger til kortet i spillers hånd
+      playerHand.push(card);
+
+      // Oppdaterer meldingen
+      updateMessage();
+
+      // Sjekker om spilleren har fått tre like kort
+      checkForTress();
+    }
+
+    function updateMessage() {
+      const messageElement = document.getElementById('message');
+      messageElement.textContent = `Ditt kort: ${playerHand.join(', ')}`;
+    }
+
+    function checkForTress() {
+      const uniqueRanks = new Set(playerHand.map(card => card.split(' ')[0]));
+
+      if (uniqueRanks.size === 3) {
+        alert('Gratulerer! Du har fått tress!');
+        resetGame();
+      }
+    }
+
+    function resetGame() {
+      playerHand = [];
+      updateMessage();
+    }
+  </script>
 </body>
 </html>
