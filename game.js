@@ -6,6 +6,12 @@ function incrementScore() {
     saveScore();
 }
 
+function resetScore() {
+    score = 0;
+    updateScore();
+    saveScore();
+}
+
 function updateScore() {
     document.getElementById('score').innerText = `Score: ${score}`;
 }
