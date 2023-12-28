@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Klikkerspill</title>
+    <title>Skaffe me nå shilling</title>
     <style>
         body {
             text-align: center;
@@ -33,12 +33,21 @@
             transition: background-color 0.3s;
         }
 
+        .btn-can-afford {
+            background-color: #61dafb;
+            color: #282c34;
+        }
+
+        .btn-cannot-afford {
+            background-color: #e74c3c;
+            color: #ffffff;
+        }
+
         .btn:hover {
             background-color: #45a9d3;
         }
 
         .upgrade-box {
-            background-color: #45a9d3;
             color: #282c34;
             padding: 10px;
             border-radius: 5px;
@@ -47,27 +56,31 @@
             transition: background-color 0.3s;
         }
 
-        .upgrade-box:hover {
-            background-color: #3689b7;
+        .upgrade-box-can-afford {
+            background-color: #61dafb;
         }
 
-        .can-afford {
-            background-color: #61dafb !important;
-            color: #282c34 !important;
+        .upgrade-box-cannot-afford {
+            background-color: #e74c3c;
+            color: #ffffff;
+        }
+
+        .upgrade-box:hover {
+            background-color: #3689b7;
         }
     </style>
 </head>
 <body>
-    <h1>Klikkerspill</h1>
+    <h1>Orke itte arbeie</h1>
     <div>
         <p>Penger: <span id="money">0</span></p>
-        <button id="clickBtn" class="btn">Klikk meg!</button>
+        <button id="clickBtn" class="btn btn-can-afford">Klikk meg!</button>
         <button id="resetBtn" class="btn">Tilbakestill</button>
     </div>
 
     <div id="shop">
-        <div class="upgrade-box" id="buyUpgrade1Btn">Oppgradering 1<br>Pris: 10</div>
-        <div class="upgrade-box" id="buyUpgrade2Btn">Oppgradering 2<br>Pris: 20</div>
+        <div class="upgrade-box upgrade-box-can-afford" id="buyUpgrade1Btn">Oppgradering 1<br>Pris: 10</div>
+        <div class="upgrade-box upgrade-box-can-afford" id="buyUpgrade2Btn">Oppgradering 2<br>Pris: 20</div>
     </div>
 
     <script>
@@ -104,8 +117,17 @@
             const canAffordUpgrade1 = money >= upgradeCost1;
             const canAffordUpgrade2 = money >= upgradeCost2;
 
-            document.getElementById('buyUpgrade1Btn').classList.toggle('can-afford', canAffordUpgrade1);
-            document.getElementById('buyUpgrade2Btn').classList.toggle('can-afford', canAffordUpgrade2);
+            const clickBtn = document.getElementById('clickBtn');
+            clickBtn.classList.toggle('btn-can-afford', true);
+            clickBtn.classList.toggle('btn-cannot-afford', false);
+
+            const upgrade1Btn = document.getElementById('buyUpgrade1Btn');
+            upgrade1Btn.classList.toggle('upgrade-box-can-afford', canAffordUpgrade1);
+            upgrade1Btn.classList.toggle('upgrade-box-cannot-afford', !canAffordUpgrade1);
+
+            const upgrade2Btn = document.getElementById('buyUpgrade2Btn');
+            upgrade2Btn.classList.toggle('upgrade-box-can-afford', canAffordUpgrade2);
+            upgrade2Btn.classList.toggle('upgrade-box-cannot-afford', !canAffordUpgrade2);
         }
 
         document.getElementById('clickBtn').addEventListener('click', function() {
