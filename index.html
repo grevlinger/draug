@@ -1,1 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klikkerspill</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
 
+        #score {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            font-size: 18px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Klikkerspill</h1>
+    <div>
+        <p>Score: <span id="score">0</span></p>
+        <button id="clickBtn" class="btn">Klikk meg!</button>
+        <button id="resetBtn" class="btn">Tilbakestill score</button>
+    </div>
+
+    <script>
+        // Hent lagret score fra lokal lagring
+        let score = parseInt(localStorage.getItem('score')) || 0;
+        document.getElementById('score').innerText = score;
+
+        // Legg til klikkelytter på knappen for å øke score
+        document.getElementById('clickBtn').addEventListener('click', function() {
+            // Øk scoren
+            score++;
+            // Oppdater visning av score
+            document.getElementById('score').innerText = score;
+            // Lagre score i lokal lagring
+            localStorage.setItem('score', score.toString());
+        });
+
+        // Legg til klikkelytter på knappen for å tilbakestille score
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            // Tilbakestill scoren til 0
+            score = 0;
+            // Oppdater visning av score
+            document.getElementById('score').innerText = score;
+            // Lagre score i lokal lagring
+            localStorage.setItem('score', score.toString());
+        });
+    </script>
+</body>
+</html>
