@@ -10,6 +10,7 @@ function resetScore() {
     score = 0;
     updateScore();
     saveScore();
+    console.log('Score reset to 0');
 }
 
 function updateScore() {
@@ -17,9 +18,10 @@ function updateScore() {
 }
 
 function saveScore() {
-    // Lagre poengsummen i lokal lagring
     localStorage.setItem('score', score.toString());
 }
 
-// Kall updateScore() ved oppstart for å vise eksisterende poengsum
 updateScore();
+
+// Legg til en konsollutskrift for å bekrefte at siden lastes inn
+console.log('Siden lastes inn');
