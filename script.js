@@ -1,35 +1,42 @@
-// Game variables
-let score = 0;
-let clickValue = 1;
-let idleRate = 1;
+let population = 0;
+let resources = 0;
+let buildingLevel = 1;
 
-// DOM elements
-const scoreElement = document.getElementById('score');
-const clickButton = document.getElementById('click-button');
-const idleButton = document.getElementById('idle-button');
+const populationElement = document.getElementById('population');
 
-// Event listeners
-clickButton.addEventListener('click', click);
-idleButton.addEventListener('click', startIdle);
+const addResidentButton = document.getElementById('add-resident');
+const collectResourcesButton = document.getElementById('collect-resources');
+const upgradeBuildingButton = document.getElementById('upgrade-building');
 
-// Click event handler
-function click() {
-    score += clickValue;
-    updateScore();
+addResidentButton.addEventListener('click', addResident);
+collectResourcesButton.addEventListener('click', collectResources);
+upgradeBuildingButton.addEventListener('click', upgradeBuilding);
+
+function addResident() {
+    population++;
+    updatePopulation();
 }
 
-// Idle event handler
-function startIdle() {
-    setInterval(idle, 1000); // 1000 milliseconds = 1 second
+function collectResources() {
+    resources += population * buildingLevel;
+    updateResources();
 }
 
-// Idle logic
-function idle() {
-    score += idleRate;
-    updateScore();
+function upgradeBuilding() {
+    if (resources >= buildingLevel * 10) {
+        resources -= buildingLevel * 10;
+        buildingLevel++;
+        updateResources();
+    } else {
+        alert("Not enough resources to upgrade the building.");
+    }
 }
 
-// Update score on the UI
-function updateScore() {
-    scoreElement.textContent = `Score: ${score}`;
+function updatePopulation() {
+    populationElement.textContent = `Befolkning: ${population}`;
+}
+
+function updateResources() {
+    // Update resources on the UI
+    // You can implement this based on your UI design
 }
