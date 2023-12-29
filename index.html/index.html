@@ -5,39 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matvareliste</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-
-        #app {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        #ingredient-list {
-            margin-bottom: 20px;
-        }
+        /* Din CSS-stil her */
     </style>
 </head>
 <body>
     <div id="app">
         <h1>Matvareliste</h1>
 
-        <div>
-            <label for="ingredient-name">Matvarenavn:</label>
-            <input type="text" id="ingredient-name" placeholder="Skriv inn matvarenavn">
-
-            <label for="ingredient-quantity">Kvantum (kilo):</label>
-            <input type="number" id="ingredient-quantity" placeholder="Skriv inn kvantum">
-
-            <button onclick="addIngredient()">Legg til</button>
-        </div>
-
-        <div id="ingredient-list">
-            <h2>Dine lagrede matvarer:</h2>
-            <ul id="ingredients"></ul>
-        </div>
+        <!-- Din HTML-struktur her -->
 
         <button onclick="generateMeal()">Generer matrett</button>
         <p id="meal"></p>
@@ -46,40 +21,9 @@
     <script>
         const ingredientList = [];
 
-        function addIngredient() {
-            const nameInput = document.getElementById('ingredient-name');
-            const quantityInput = document.getElementById('ingredient-quantity');
+        // Din eksisterende JavaScript-kode her
 
-            const name = nameInput.value.trim();
-            const quantity = quantityInput.value.trim();
-
-            if (name !== '' && quantity !== '' && !isNaN(quantity) && parseFloat(quantity) > 0) {
-                const ingredient = {
-                    name: name,
-                    quantity: parseFloat(quantity)
-                };
-
-                ingredientList.push(ingredient);
-                updateIngredientList();
-                nameInput.value = '';
-                quantityInput.value = '';
-            } else {
-                alert('Vennligst fyll ut gyldige verdier for matvarenavn og kvantum.');
-            }
-        }
-
-        function updateIngredientList() {
-            const ingredientsUl = document.getElementById('ingredients');
-            ingredientsUl.innerHTML = '';
-
-            ingredientList.forEach(ingredient => {
-                const li = document.createElement('li');
-                li.textContent = `${ingredient.name} (${ingredient.quantity} kg)`;
-                ingredientsUl.appendChild(li);
-            });
-        }
-
-        function generateMeal() {
+        async function generateMeal() {
             const mealParagraph = document.getElementById('meal');
 
             if (ingredientList.length === 0) {
@@ -87,9 +31,21 @@
                 return;
             }
 
-            const randomIngredient = ingredientList[Math.floor(Math.random() * ingredientList.length)];
-            const meal = `Din tilfeldige matrett: ${randomIngredient.name} med noe annet!`;
-            mealParagraph.textContent = meal;
+            try {
+                const randomIngredient = ingredientList[Math.floor(Math.random() * ingredientList.length)];
+                const mealResponse = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${randomIngredient.name}`);
+                const mealData = await mealResponse.json();
+
+                if (mealData.meals && mealData.meals.length > 0) {
+                    const randomMeal = mealData.meals[Math.floor(Math.random() * mealData.meals.length)];
+                    mealParagraph.textContent = `Din tilfeldige matrett: ${randomMeal.strMeal}`;
+                } else {
+                    mealParagraph.textContent = 'Ingen matrett funnet for denne ingrediensen.';
+                }
+            } catch (error) {
+                console.error('Feil ved henting av matrett:', error);
+                mealParagraph.textContent = 'Noe gikk galt ved henting av matrett.';
+            }
         }
     </script>
 </body>
