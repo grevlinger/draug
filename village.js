@@ -6,11 +6,13 @@ const populationElement = document.getElementById('population');
 const addResidentButton = document.getElementById('add-resident');
 const collectResourcesButton = document.getElementById('collect-resources');
 const upgradeBuildingButton = document.getElementById('upgrade-building');
+const restartGameButton = document.getElementById('restart-game');
 const residentIconsContainer = document.getElementById('resident-icons');
 
 addResidentButton.addEventListener('click', addResident);
 collectResourcesButton.addEventListener('click', collectResources);
 upgradeBuildingButton.addEventListener('click', upgradeBuilding);
+restartGameButton.addEventListener('click', restartGame);
 
 updatePopulation();
 updateResources();
@@ -40,6 +42,19 @@ function upgradeBuilding() {
     } else {
         alert("Ikke nok ressurser for å oppgradere bygningen.");
     }
+}
+
+// Restart game event handler
+function restartGame() {
+    // Reset all game data
+    population = 0;
+    resources = 0;
+    buildingLevel = 1;
+    // Clear resident icons
+    residentIconsContainer.innerHTML = '';
+    // Update UI
+    updatePopulation();
+    updateResources();
 }
 
 // Update population on the UI
