@@ -21,6 +21,7 @@ function addResident() {
     population++;
     updatePopulation();
     createResidentIcon();
+    checkForHouseTransformation();
 }
 
 // Collect resources event handler
@@ -35,6 +36,7 @@ function upgradeBuilding() {
         resources -= buildingLevel * 10;
         buildingLevel++;
         updateResources();
+        checkForHouseTransformation();
     } else {
         alert("Ikke nok ressurser for å oppgradere bygningen.");
     }
@@ -59,6 +61,7 @@ function updateResources() {
 function createResidentIcon() {
     const residentIcon = document.createElement('div');
     residentIcon.className = 'resident-icon';
+    residentIcon.innerHTML = '👨'; // Emoji icon for man
     residentIconsContainer.appendChild(residentIcon);
 }
 
@@ -66,5 +69,18 @@ function createResidentIcon() {
 function createResidentIcons() {
     for (let i = 0; i < population; i++) {
         createResidentIcon();
+        checkForHouseTransformation();
+    }
+}
+
+// Check for house transformation
+function checkForHouseTransformation() {
+    const residentIcons = document.querySelectorAll('.resident-icon');
+    if (residentIcons.length >= 10) {
+        // Transform the last 10 residents into a house
+        for (let i = 0; i < 10; i++) {
+            const residentIcon = residentIcons[i];
+            residentIcon.innerHTML = '🏠'; // Emoji icon for house
+        }
     }
 }
