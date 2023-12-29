@@ -1,8 +1,12 @@
 let population = parseInt(localStorage.getItem('population')) || 0;
 let resources = parseInt(localStorage.getItem('resources')) || 0;
 let buildingLevel = parseInt(localStorage.getItem('buildingLevel')) || 1;
+let residentCounter = 0;
+let houseCounter = 0;
 
 const populationElement = document.getElementById('population');
+const residentCountElement = document.getElementById('resident-count');
+const houseCountElement = document.getElementById('house-count');
 const addResidentButton = document.getElementById('add-resident');
 const collectResourcesButton = document.getElementById('collect-resources');
 const upgradeBuildingButton = document.getElementById('upgrade-building');
@@ -15,13 +19,17 @@ upgradeBuildingButton.addEventListener('click', upgradeBuilding);
 restartGameButton.addEventListener('click', restartGame);
 
 updatePopulation();
+updateResidentCount();
+updateHouseCount();
 updateResources();
 createResidentIcons();
 
 // Add resident event handler
 function addResident() {
     population++;
+    residentCounter++;
     updatePopulation();
+    updateResidentCount();
     createResidentIcon();
     checkForHouseTransformation();
 }
@@ -50,10 +58,14 @@ function restartGame() {
     population = 0;
     resources = 0;
     buildingLevel = 1;
+    residentCounter = 0;
+    houseCounter = 0;
     // Clear resident icons
     residentIconsContainer.innerHTML = '';
     // Update UI
     updatePopulation();
+    updateResidentCount();
+    updateHouseCount();
     updateResources();
 }
 
@@ -62,6 +74,16 @@ function updatePopulation() {
     populationElement.textContent = `Befolkning: ${population}`;
     // Save data to local storage
     localStorage.setItem('population', population);
+}
+
+// Update resident count on the UI
+function updateResidentCount() {
+    residentCountElement.textContent = `Landsbybeboere: ${residentCounter}`;
+}
+
+// Update house count on the UI
+function updateHouseCount() {
+    houseCountElement.textContent = `Bolighus: ${houseCounter}`;
 }
 
 // Update resources on the UI
@@ -90,12 +112,23 @@ function createResidentIcons() {
 
 // Check for house transformation
 function checkForHouseTransformation() {
-    const residentIcons = document.querySelectorAll('.resident-icon');
-    if (residentIcons.length >= 10) {
+    if (residentCounter >= 10) {
         // Transform the last 10 residents into a house
         for (let i = 0; i < 10; i++) {
-            const residentIcon = residentIcons[i];
-            residentIcon.innerHTML = '🏠'; // Emoji icon for house
+            const residentIcon = residentIconsContainer.lastChild;
+            residentIconsContainer.removeChild(residentIcon);
         }
+        createHouseIcon();
+        residentCounter = 0;
     }
+}
+
+// Create a house icon
+function createHouseIcon() {
+    const houseIcon = document.createElement('div');
+    houseIcon.className = 'house-icon';
+    houseIcon.innerHTML = '🏠'; // Emoji icon for house
+    residentIconsContainer.appendChild(houseIcon);
+    houseCounter++;
+    updateHouseCount();
 }
