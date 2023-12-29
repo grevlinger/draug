@@ -143,7 +143,7 @@ function generatePassiveIncome() {
 
 // Upgrade house income
 function upgradeHouse() {
-    houseCounter++; // Add a new house
+    houseCounter++; // Increase the income from existing houses
     upgradeCost = Math.round(upgradeCost * upgradeMultiplier); // Increase the upgrade cost
     updateHouseCount();
     updateGold();
