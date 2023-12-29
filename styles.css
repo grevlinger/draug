@@ -13,3 +13,11 @@ button {
     margin: 10px;
     cursor: pointer;
 }
+
+.resident-icon {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    background-color: #ddd;
+    display: inline-block;
+}
