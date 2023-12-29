@@ -65,3 +65,13 @@ function updateVillageCount() {
     villageCountElement.textContent = `Landsbyer: ${villageCount}`;
     localStorage.setItem('villageCount', villageCount);
 }
+// village.js
+
+const residentIconsContainer = document.getElementById('resident-icons');
+const houseIconString = '<div class="house-icon">🏡</div>'; // Emoji for huset
+
+function createHouseIcon() {
+    // Append the house icon string to the container
+    residentIconsContainer.innerHTML += houseIconString;
+}
+
