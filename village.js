@@ -3,20 +3,18 @@ let resources = parseInt(localStorage.getItem('resources')) || 0;
 let buildingLevel = parseInt(localStorage.getItem('buildingLevel')) || 1;
 let houseCounter = parseInt(localStorage.getItem('houseCounter')) || 0;
 let gold = parseInt(localStorage.getItem('gold')) || 0;
+let upgradeCost = 10; // Initial cost to upgrade house income
+let upgradeMultiplier = 2; // Multiplier for increasing upgrade cost
 
 const populationElement = document.getElementById('population');
 const houseCountElement = document.getElementById('house-count');
 const goldCountElement = document.getElementById('gold-count');
-const addResidentButton = document.getElementById('add-resident');
-const collectResourcesButton = document.getElementById('collect-resources');
 const upgradeBuildingButton = document.getElementById('upgrade-building');
-const restartGameButton = document.getElementById('restart-game');
-const residentIconsContainer = document.getElementById('resident-icons');
 
-addResidentButton.addEventListener('click', addResident);
-collectResourcesButton.addEventListener('click', collectResources);
+document.getElementById('add-resident').addEventListener('click', addResident);
+document.getElementById('collect-resources').addEventListener('click', collectResources);
 upgradeBuildingButton.addEventListener('click', upgradeBuilding);
-restartGameButton.addEventListener('click', restartGame);
+document.getElementById('restart-game').addEventListener('click', restartGame);
 
 updatePopulation();
 updateHouseCount();
@@ -40,13 +38,12 @@ function collectResources() {
 
 // Upgrade building event handler
 function upgradeBuilding() {
-    if (resources >= buildingLevel * 10) {
-        resources -= buildingLevel * 10;
-        buildingLevel++;
+    if (resources >= upgradeCost) {
+        resources -= upgradeCost;
+        upgradeHouse();
         updateResources();
-        checkForHouseTransformation();
     } else {
-        alert("Ikke nok ressurser for å oppgradere bygningen.");
+        alert("Ikke nok ressurser for å oppgradere husleieinntektene.");
     }
 }
 
@@ -58,8 +55,9 @@ function restartGame() {
     buildingLevel = 1;
     houseCounter = 0;
     gold = 0;
+    upgradeCost = 10;
     // Clear resident icons
-    residentIconsContainer.innerHTML = '';
+    document.getElementById('resident-icons').innerHTML = '';
     // Update UI
     updatePopulation();
     updateHouseCount();
@@ -101,7 +99,7 @@ function createResidentIcon() {
     const residentIcon = document.createElement('div');
     residentIcon.className = 'resident-icon';
     residentIcon.innerHTML = '👨'; // Emoji icon for man
-    residentIconsContainer.appendChild(residentIcon);
+    document.getElementById('resident-icons').appendChild(residentIcon);
 }
 
 // Create resident icons based on current population
@@ -117,8 +115,8 @@ function checkForHouseTransformation() {
     if (population >= 10) {
         // Transform the last 10 residents into a house
         for (let i = 0; i < 10; i++) {
-            const residentIcon = residentIconsContainer.lastChild;
-            residentIconsContainer.removeChild(residentIcon);
+            const residentIcon = document.querySelector('.resident-icon');
+            residentIcon.parentNode.removeChild(residentIcon);
         }
         createHouseIcon();
     }
@@ -129,7 +127,7 @@ function createHouseIcon() {
     const houseIcon = document.createElement('div');
     houseIcon.className = 'house-icon';
     houseIcon.innerHTML = '🏠'; // Emoji icon for house
-    residentIconsContainer.appendChild(houseIcon);
+    document.getElementById('resident-icons').appendChild(houseIcon);
     houseCounter++;
     updateHouseCount();
 
@@ -141,4 +139,19 @@ function createHouseIcon() {
 function generatePassiveIncome() {
     gold += houseCounter; // Each house generates 1 gold per second
     updateGold();
+}
+
+// Upgrade house income
+function upgradeHouse() {
+    houseCounter++; // Add a new house
+    upgradeCost = Math.round(upgradeCost * upgradeMultiplier); // Increase the upgrade cost
+    updateHouseCount();
+    updateGold();
+    updateResources();
+    updateUpgradeButton();
+}
+
+// Update upgrade button text
+function updateUpgradeButton() {
+    upgradeBuildingButton.textContent = `Oppgrader Bygning (${upgradeCost} ressurser)`;
 }
