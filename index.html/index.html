@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matvareliste</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #app {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #ingredient-list {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Matvareliste</h1>
+
+        <div>
+            <label for="ingredient">Legg til matvare:</label>
+            <input type="text" id="ingredient" placeholder="Skriv inn matvare">
+            <button onclick="addIngredient()">Legg til</button>
+        </div>
+
+        <div id="ingredient-list">
+            <h2>Dine lagrede matvarer:</h2>
+            <ul id="ingredients"></ul>
+        </div>
+
+        <button onclick="generateMeal()">Generer matrett</button>
+        <p id="meal"></p>
+    </div>
+
+    <script>
+        const ingredientList = [];
+
+        function addIngredient() {
+            const ingredientInput = document.getElementById('ingredient');
+            const ingredient = ingredientInput.value.trim();
+
+            if (ingredient !== '') {
+                ingredientList.push(ingredient);
+                updateIngredientList();
+                ingredientInput.value = '';
+            }
+        }
+
+        function updateIngredientList() {
+            const ingredientsUl = document.getElementById('ingredients');
+            ingredientsUl.innerHTML = '';
+
+            ingredientList.forEach(ingredient => {
+                const li = document.createElement('li');
+                li.textContent = ingredient;
+                ingredientsUl.appendChild(li);
+            });
+        }
+
+        function generateMeal() {
+            const mealParagraph = document.getElementById('meal');
+
+            if (ingredientList.length === 0) {
+                mealParagraph.textContent = 'Legg til matvarer først!';
+                return;
+            }
+
+            const randomIngredient = ingredientList[Math.floor(Math.random() * ingredientList.length)];
+            const meal = `Din tilfeldige matrett: ${randomIngredient} med noe annet!`;
+            mealParagraph.textContent = meal;
+        }
+    </script>
+</body>
+</html>
