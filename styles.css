@@ -1,0 +1,28 @@
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 0;
+}
+
+#village-container {
+    margin: 50px;
+}
+
+button {
+    font-size: 16px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#resident-icons {
+    margin-top: 20px;
+}
+
+.resident-icon {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    background-color: #ddd;
+    display: inline-block;
+}
