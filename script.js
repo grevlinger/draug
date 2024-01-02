@@ -1,6 +1,7 @@
 let gold = 0;
 let clickMultiplier = 1;
 let passiveIncome = 0;
+let passiveIncomeInterval;
 
 function updateDisplay() {
     document.getElementById('output').innerHTML = `
@@ -38,10 +39,21 @@ function buyUpgrade(upgradeType) {
 }
 
 function startPassiveIncome() {
-    setInterval(function() {
-        gold += passiveIncome;
-        updateDisplay();
-    }, 1000);
+    if (!passiveIncomeInterval) {
+        passiveIncomeInterval = setInterval(function() {
+            gold += passiveIncome;
+            updateDisplay();
+        }, 1000);
+    }
+}
+
+function resetGame() {
+    gold = 0;
+    clickMultiplier = 1;
+    passiveIncome = 0;
+    clearInterval(passiveIncomeInterval);
+    passiveIncomeInterval = null;
+    updateDisplay();
 }
 
 updateDisplay();
