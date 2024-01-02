@@ -1,6 +1,7 @@
 let gold = 0;
 let goldPerClick = 1;
 let goldPerSecond = 0;
+let passiveIncomeInterval;
 
 function updateGoldDisplay() {
   document.getElementById('gold').innerText = gold;
@@ -19,6 +20,12 @@ function buyUpgrade(upgrade) {
         goldPerSecond += 1;
         updateGoldDisplay();
         addEmoji('🏠');
+        if (!passiveIncomeInterval) {
+          passiveIncomeInterval = setInterval(function() {
+            gold += goldPerSecond;
+            updateGoldDisplay();
+          }, 1000);
+        }
       } else {
         alert('Not enough gold to buy a house!');
       }
