@@ -7,19 +7,9 @@ let productionInterval;
 let screws = 0;
 let screwRate = 5;
 
-function updateMetalPlateDisplay(adjustment = 0) {
-  metalPlates += adjustment;
+function updateMetalPlateDisplay() {
   document.getElementById('metalPlates').innerText = metalPlates;
-
-  // Check if the user has enough metal plates to show the screw upgrade button
-  if (metalPlates <= 100) {
-    document.getElementById('screwUpgrade').style.display = 'inline-block';
-  }
-
-  // Check if the user has enough metal plates to show the buy screws button
-  if (metalPlates >= 1) {
-    document.getElementById('buyScrews').style.display = 'inline-block';
-  }
+  document.getElementById('passiveIncome').innerText = passiveProduction;
 }
 
 function updateScrewDisplay() {
@@ -53,6 +43,7 @@ function buyUpgrade(upgrade) {
     case 'screw':
       if (metalPlates >= 100) {
         metalPlates -= 100;
+        document.getElementById('screwUpgrade').style.display = 'inline-block'; // Show the screw upgrade button
         document.getElementById('buyScrews').style.display = 'inline-block'; // Show the buy screws button
         alert('You bought a Screw Generator!');
       } else {
@@ -66,7 +57,7 @@ function buyUpgrade(upgrade) {
 function buyScrews() {
   metalPlates -= 1;
   screws += screwRate;
-  updateMetalPlateDisplay(0);
+  updateMetalPlateDisplay();
   updateScrewDisplay();
 }
 
