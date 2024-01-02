@@ -56,4 +56,3 @@ function resetGame() {
     updateDisplay();
 }
 
-updateDisplay();
