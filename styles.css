@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f0f0f0;
+    background-color: #fff;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -9,7 +9,7 @@ body {
 }
 
 .game-container {
-    background-color: #fff;
+    background-color: #63849E;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -50,7 +50,7 @@ button:disabled {
 .chat-box p {
     margin: 5px 0;
     padding: 8px;
-    color: #333;
+    color: #63849E;
     max-width: 80%;
     word-wrap: break-word;
     display: inline-block;
