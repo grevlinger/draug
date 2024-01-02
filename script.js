@@ -1,73 +1,50 @@
 let metalPlates = 0;
-let platesPerClick = 1;
+let screwCount = 0;
+let screwPileCount = 0;
 let factories = 0;
-let passiveProduction = 0;
-let productionInterval;
+let screwDuplicators = 0;
 
-let screws = 0;
-let screwRate = 5;
-
-function updateMetalPlateDisplay() {
-  document.getElementById('metalPlates').innerText = metalPlates;
-  document.getElementById('passiveIncome').innerText = passiveProduction;
+function updateResources() {
+  document.getElementById('metalPlatesCount').innerText = metalPlates + ' per second';
+  document.getElementById('screwCount').innerText = screwCount + ' per second';
+  document.getElementById('screwPileCount').innerText = screwPileCount;
+  document.getElementById('screwDuplicatorButton').disabled = metalPlates < 100;
 }
 
-function updateScrewDisplay() {
-  document.getElementById('screws').innerText = screws;
+function produceMetalPlate() {
+  metalPlates += 1;
+  updateResources();
 }
 
-function clickButton() {
-  metalPlates += platesPerClick;
-  updateMetalPlateDisplay();
+function buyFactory() {
+  if (metalPlates >= 10) {
+    metalPlates -= 10;
+    factories += 1;
+    updateResources();
+  }
+}
 
-  // Check if the user has enough metal plates to show the screw-related elements
+function buyScrewDuplicator() {
   if (metalPlates >= 100) {
-    document.getElementById('screwUpgrade').style.display = 'inline-block';
-    document.getElementById('buyScrews').style.display = 'inline-block';
-    document.getElementById('screwDisplay').style.display = 'block';
+    metalPlates -= 100;
+    screwDuplicators += 1;
+    updateResources();
+    setInterval(function () {
+      screwCount += 10;
+      updateResources();
+    }, 20000); // Hvert tyvende sekund
+
+    setInterval(function () {
+      if (screwCount >= 10) {
+        screwCount -= 10;
+        screwPileCount += 1;
+        updateResources();
+      }
+    }, 1000); // Hvert sekund
   }
 }
 
-function buyUpgrade(upgrade) {
-  switch (upgrade) {
-    case 'factory':
-      if (metalPlates >= 20) {
-        metalPlates -= 20;
-        factories++;
-        passiveProduction = factories;
-        updateMetalPlateDisplay(1);
-        addEmoji('🏭');
-        if (!productionInterval) {
-          productionInterval = setInterval(function () {
-            metalPlates += passiveProduction;
-            updateMetalPlateDisplay();
-          }, 1000);
-        }
-      } else {
-        alert('Not enough metal plates to buy a factory!');
-      }
-      break;
-    case 'screw':
-      if (metalPlates >= 100) {
-        metalPlates -= 100;
-        alert('You bought a Screw Generator!');
-      } else {
-        alert('Not enough metal plates to buy a Screw Generator!');
-      }
-      break;
-    // Add more cases for other upgrades
-  }
-}
-
-function buyScrews() {
-  metalPlates -= 1;
-  screws += screwRate;
-  updateMetalPlateDisplay();
-  updateScrewDisplay(5);
-}
-
-function addEmoji(emoji) {
-  const emojiSpan = document.createElement('span');
-  emojiSpan.innerText = emoji;
-  document.getElementById('upgrades').appendChild(emojiSpan);
-}
+setInterval(function () {
+  metalPlates += factories;
+  updateResources();
+}, 1000); // Hvert sekund
