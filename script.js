@@ -71,11 +71,3 @@ function addEmoji(emoji) {
   emojiSpan.innerText = emoji;
   document.getElementById('upgrades').appendChild(emojiSpan);
 }
-let screwCount = 5;
-let metalPlates = 3;
-
-// Oppdater screwCount og metalPlates
-screwCount = Math.max(0, screwCount - 1);
-metalPlates = Math.max(0, metalPlates - 1);
-
-console.log(screwCount, metalPlates);
