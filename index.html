@@ -4,25 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
-  <title>Text RPG</title>
+  <title>Hematron Autobot RPG</title>
 </head>
 <body>
 
-  <div id="character-selection">
-    <div class="character-card" onclick="selectCharacter('warrior')">
-      <h2>Warrior</h2>
-      <img src="warrior-emoji.png" alt="Warrior Emoji" width="50">
+  <div id="game-container">
+    <div id="character-info">
+      <h2>Hematron Autobot</h2>
+      <p>Level: <span id="level">1</span></p>
+      <p>Experience: <span id="experience">0</span></p>
+      <p>Health: <span id="health">100</span></p>
+      <p>Energy: <span id="energy">50</span></p>
     </div>
 
-    <div class="character-card" onclick="selectCharacter('mage')">
-      <h2>Mage</h2>
-      <img src="mage-emoji.png" alt="Mage Emoji" width="50">
+    <div id="battle-container">
+      <button onclick="startBattle()">Start Battle</button>
+      <p id="battle-log"></p>
     </div>
-  </div>
-
-  <div id="homebase">
-    <h1>Welcome to your Home Base!</h1>
-    <p id="selected-character"></p>
   </div>
 
   <script src="script.js"></script>
