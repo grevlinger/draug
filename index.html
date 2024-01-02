@@ -1,28 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Hematron Autobot RPG</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Plant RPG</title>
 </head>
 <body>
-
-  <div id="game-container">
-    <div id="character-info">
-      <h2>Hematron Autobot</h2>
-      <p>Level: <span id="level">1</span></p>
-      <p>Experience: <span id="experience">0</span></p>
-      <p>Health: <span id="health">100</span></p>
-      <p>Energy: <span id="energy">50</span></p>
+    <div id="container">
+        <h1>Plant RPG</h1>
+        <p>Oxygen: <span id="oxygen">0</span></p>
+        <p>CO2: <span id="co2">0</span></p>
+        <button onclick="clickPlant()">Click the Plant</button>
+        <button onclick="upgradePlant()">Upgrade Plant</button>
     </div>
-
-    <div id="battle-container">
-      <button onclick="startBattle()">Start Battle</button>
-      <p id="battle-log"></p>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
-</html> 
+</html>
