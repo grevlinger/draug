@@ -1,6 +1,8 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
+  background-color: #111; /* Dark background color */
+  color: #fff; /* Light text color */
 }
 
 #metalPlateDisplay {
@@ -8,22 +10,21 @@ body {
   margin-bottom: 10px;
 }
 
-#button {
+#button, .upgrade {
   font-size: 18px;
   padding: 10px;
   cursor: pointer;
+  background-color: #333; /* Dark button background color */
+  color: #fff; /* Light button text color */
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+#button:hover, .upgrade:hover {
+  background-color: #555; /* Dark hover background color */
 }
 
 #upgrades {
   margin-top: 20px;
 }
-
-.upgrade {
-  display: inline-block;
-  margin: 10px;
-  padding: 10px;
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
