@@ -5,6 +5,10 @@ body {
   color: #fff;
 }
 
+#resourceList {
+  margin-top: 20px;
+}
+
 #metalPlateDisplay, #screwDisplay {
   font-size: 24px;
   margin-bottom: 10px;
