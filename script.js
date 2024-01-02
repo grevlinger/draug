@@ -12,7 +12,7 @@ function updateMetalPlateDisplay(adjustment = 0) {
   document.getElementById('metalPlates').innerText = metalPlates;
 
   // Check if the user has enough metal plates to show the screw upgrade button
-  if (metalPlates >= 100) {
+  if (metalPlates <= 100) {
     document.getElementById('screwUpgrade').style.display = 'inline-block';
   }
 
