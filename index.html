@@ -3,23 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dreadforge Citadel</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
+  <title>Resource Management</title>
 </head>
 <body>
-
-  <h1>Dreadforge Citadel</h1>
-  <div id="resourceList">
-    <div id="metalPlateDisplay">Metal Plates: <span id="metalPlates">0</span> (+<span id="passiveIncome">0</span>/s)</div>
-    <div id="screwDisplay" style="display: none;">Screws: <span id="screws">0</span></div>
+  <div class="resources">
+    <h2>Resources</h2>
+    <p>Metal Plates: <span id="metalPlatesCount">0</span> per second</p>
+    <p>Screws: <span id="screwCount">0</span> per second</p>
+    <p>Screw Piles: <span id="screwPileCount">0</span></p>
   </div>
 
-  <button id="button" onclick="clickButton()">Click to Generate Metal Plates</button>
-
-  <div id="upgrades">
-    <div id="factoryUpgrade" class="upgrade" onclick="buyUpgrade('factory')">Buy Factory</div>
-    <div id="screwUpgrade" class="upgrade" onclick="buyUpgrade('screw')" style="display: none;">Buy Screw Generator</div>
-    <div id="buyScrews" class="upgrade" onclick="buyScrews()" style="display: none;">Buy Screws</div>
+  <div class="buttons">
+    <button onclick="produceMetalPlate()">Produce Metal Plate</button>
+    <button onclick="buyFactory()">Buy Factory</button>
+    <button onclick="buyScrewDuplicator()" id="screwDuplicatorButton" disabled>Buy Screw Duplicator</button>
   </div>
 
   <script src="script.js"></script>
