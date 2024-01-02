@@ -1,44 +1,12 @@
-let metalPlates = 0;
-let screwCount = 0;
-let factories = 0;
-let screwDuplicators = 0;
-let materialsPerSecond = 0;
+function selectCharacter(characterClass) {
+  const homebase = document.getElementById('homebase');
+  const characterSelection = document.getElementById('character-selection');
+  const selectedCharacter = document.getElementById('selected-character');
 
-function updateResources() {
-  document.getElementById('metalPlatesCount').innerText = metalPlates + ' (' + materialsPerSecond + ' per second)';
-  document.getElementById('screwCount').innerText = screwCount + ' per second';
-  document.getElementById('screwDuplicatorButton').disabled = metalPlates < 100;
+  // Display home base
+  homebase.style.display = 'block';
+  characterSelection.style.display = 'none';
+
+  // Display selected character
+  selectedCharacter.innerHTML = `You selected the ${characterClass} <img src="${characterClass}-emoji.png" alt="${characterClass} Emoji" width="30">.`;
 }
-
-function produceMetalPlate() {
-  metalPlates += 1;
-  materialsPerSecond += 1;
-  updateResources();
-}
-
-function buyFactory() {
-  if (metalPlates >= 10) {
-    metalPlates -= 10;
-    factories += 1;
-    materialsPerSecond += 1;
-    updateResources();
-  }
-}
-
-function buyScrewDuplicator() {
-  if (metalPlates >= 100) {
-    metalPlates -= 100;
-    screwDuplicators += 1;
-    materialsPerSecond += 10;
-    updateResources();
-    setInterval(function () {
-      screwCount += 10;
-      updateResources();
-    }, 20000); // Hvert tyvende sekund
-  }
-}
-
-setInterval(function () {
-  metalPlates += factories;
-  updateResources();
-}, 1000); // Hvert sekund
