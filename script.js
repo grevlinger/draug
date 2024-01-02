@@ -7,6 +7,8 @@ function startBattle() {
   const enemyHealth = Math.floor(Math.random() * 50) + 50; // Random enemy health between 50 and 100
   const enemyDamage = Math.floor(Math.random() * 10) + 10; // Random enemy damage between 10 and 20
 
+  resetCharacter(); // Reset character stats before each battle
+
   while (health > 0 && enemyHealth > 0) {
     const playerDamage = Math.floor(Math.random() * 10) + 10; // Random player damage between 10 and 20
 
