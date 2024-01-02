@@ -4,6 +4,9 @@ let factories = 0;
 let passiveProduction = 0;
 let productionInterval;
 
+let screws = 0;
+let screwRate = 5;
+
 function updateMetalPlateDisplay(adjustment = 0) {
   metalPlates += adjustment;
   document.getElementById('metalPlates').innerText = metalPlates;
@@ -12,6 +15,15 @@ function updateMetalPlateDisplay(adjustment = 0) {
   if (metalPlates >= 100) {
     document.getElementById('screwUpgrade').style.display = 'inline-block';
   }
+
+  // Check if the user has enough metal plates to show the buy screws button
+  if (metalPlates >= 1) {
+    document.getElementById('buyScrews').style.display = 'inline-block';
+  }
+}
+
+function updateScrewDisplay() {
+  document.getElementById('screws').innerText = screws;
 }
 
 function clickButton() {
@@ -26,7 +38,7 @@ function buyUpgrade(upgrade) {
         metalPlates -= 20;
         factories++;
         passiveProduction = factories;
-        updateMetalPlateDisplay(0);
+        updateMetalPlateDisplay(1);
         addEmoji('🏭');
         if (!productionInterval) {
           productionInterval = setInterval(function () {
@@ -41,7 +53,7 @@ function buyUpgrade(upgrade) {
     case 'screw':
       if (metalPlates >= 100) {
         metalPlates -= 100;
-        // Add logic to generate screws here
+        document.getElementById('buyScrews').style.display = 'inline-block'; // Show the buy screws button
         alert('You bought a Screw Generator!');
       } else {
         alert('Not enough metal plates to buy a Screw Generator!');
@@ -49,6 +61,13 @@ function buyUpgrade(upgrade) {
       break;
     // Add more cases for other upgrades
   }
+}
+
+function buyScrews() {
+  metalPlates -= 1;
+  screws += screwRate;
+  updateMetalPlateDisplay(0);
+  updateScrewDisplay();
 }
 
 function addEmoji(emoji) {
