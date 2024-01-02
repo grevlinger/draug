@@ -1,5 +1,8 @@
 body {
+  touch-action: pan-y;
   touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -ms-touch-action: pan-y;
 
   font-family: Arial, sans-serif;
   text-align: center;
