@@ -4,19 +4,24 @@ body {
   background-color: #f0f0f0;
 }
 
-#character-selection {
+#game-container {
   margin: 50px;
 }
 
-.character-card {
-  display: inline-block;
-  margin: 20px;
-  padding: 20px;
+#character-info {
   background-color: #fff;
+  padding: 20px;
   border-radius: 10px;
-  cursor: pointer;
+  margin-bottom: 20px;
 }
 
-#homebase {
-  display: none;
+#battle-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+button {
+  padding: 10px;
+  cursor: pointer;
 }
