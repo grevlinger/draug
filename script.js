@@ -1,35 +1,35 @@
-let gold = 0;
-let goldPerClick = 1;
-let houses = 0;
-let passiveIncome = 0;
-let passiveIncomeInterval;
+let metalPlates = 0;
+let platesPerClick = 1;
+let factories = 0;
+let passiveProduction = 0;
+let productionInterval;
 
-function updateGoldDisplay() {
-  document.getElementById('gold').innerText = gold;
+function updateMetalPlateDisplay() {
+  document.getElementById('metalPlates').innerText = metalPlates;
 }
 
 function clickButton() {
-  gold += goldPerClick;
-  updateGoldDisplay();
+  metalPlates += platesPerClick;
+  updateMetalPlateDisplay();
 }
 
 function buyUpgrade(upgrade) {
   switch (upgrade) {
     case 'house':
-      if (gold >= 20) {
-        gold -= 20;
-        houses++;
-        passiveIncome = houses; // Each house adds 1 to passive income
-        updateGoldDisplay(1);
-        addEmoji('🏠');
-        if (!passiveIncomeInterval) {
-          passiveIncomeInterval = setInterval(function () {
-            gold += passiveIncome;
-            updateGoldDisplay();
+      if (metalPlates >= 20) {
+        metalPlates -= 20;
+        factories++;
+        passiveProduction = factories; // Each factory adds 1 to passive production
+        updateMetalPlateDisplay(1);
+        addEmoji('🏭');
+        if (!productionInterval) {
+          productionInterval = setInterval(function () {
+            metalPlates += passiveProduction;
+            updateMetalPlateDisplay();
           }, 1000);
         }
       } else {
-        alert('Not enough gold to buy a house!');
+        alert('Not enough metal plates to buy a factory!');
       }
       break;
     // Add more cases for other upgrades
@@ -42,4 +42,4 @@ function addEmoji(emoji) {
   document.getElementById('upgrades').appendChild(emojiSpan);
 }
 
-// Additional functions for handling passive income and upgrades can be added here.
+// Additional functions for handling passive production and upgrades can be added here.
