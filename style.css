@@ -1,22 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      touch-action: manipulation;
-      -webkit-text-size-adjust: 100%;
-    }
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #1a1a1a; /* Mørk bakgrunnsfarge */
+  color: #fff; /* Lys tekstfarge */
+}
 
-    /* Andre stiler kan legges til her etter behov */
-  </style>
-  <link rel="stylesheet" href="styles.css">
-  <title>Resource Management</title>
-</head>
-<body>
-  <!-- Resten av HTML-koden her -->
+.resources {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #333; /* Mørk bakgrunnsfarge for ressurser */
+}
 
-  <script src="script.js"></script>
-</body>
-</html>
+.buttons button {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: #444; /* Mørk bakgrunnsfarge for knapper */
+  color: #fff; /* Lys tekstfarge for knapper */
+}
+
+/* Blokkerer zoom ved dobbeltklikk */
+body {
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+}
