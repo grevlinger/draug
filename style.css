@@ -1,11 +1,11 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: #111; /* Dark background color */
-  color: #fff; /* Light text color */
+  background-color: #111;
+  color: #fff;
 }
 
-#metalPlateDisplay {
+#metalPlateDisplay, #screwDisplay {
   font-size: 24px;
   margin-bottom: 10px;
 }
@@ -14,15 +14,15 @@ body {
   font-size: 18px;
   padding: 10px;
   cursor: pointer;
-  background-color: #333; /* Dark button background color */
-  color: #fff; /* Light button text color */
+  background-color: #333;
+  color: #fff;
   border: none;
   border-radius: 5px;
   margin: 5px;
 }
 
 #button:hover, .upgrade:hover {
-  background-color: #555; /* Dark hover background color */
+  background-color: #555;
 }
 
 #upgrades {
