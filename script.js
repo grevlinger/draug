@@ -1,13 +1,11 @@
 let metalPlates = 0;
 let screwCount = 0;
-let screwPileCount = 0;
 let factories = 0;
 let screwDuplicators = 0;
 
 function updateResources() {
   document.getElementById('metalPlatesCount').innerText = metalPlates + ' per second';
   document.getElementById('screwCount').innerText = screwCount + ' per second';
-  document.getElementById('screwPileCount').innerText = screwPileCount;
   document.getElementById('screwDuplicatorButton').disabled = metalPlates < 100;
 }
 
@@ -33,14 +31,6 @@ function buyScrewDuplicator() {
       screwCount += 10;
       updateResources();
     }, 20000); // Hvert tyvende sekund
-
-    setInterval(function () {
-      if (screwCount >= 10) {
-        screwCount -= 10;
-        screwPileCount += 1;
-        updateResources();
-      }
-    }, 1000); // Hvert sekund
   }
 }
 
