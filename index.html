@@ -3,20 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Resource Management</title>
+  <link rel="stylesheet" href="styles.css">
+  <title>Text RPG</title>
 </head>
 <body>
-  <div class="resources">
-    <h2>Resources</h2>
-    <p>Metal Plates: <span id="metalPlatesCount">0</span> per second</p>
-    <p>Screws: <span id="screwCount">0</span> per second</p>
+
+  <div id="character-selection">
+    <div class="character-card" onclick="selectCharacter('warrior')">
+      <h2>Warrior</h2>
+      <img src="warrior-emoji.png" alt="Warrior Emoji" width="50">
+    </div>
+
+    <div class="character-card" onclick="selectCharacter('mage')">
+      <h2>Mage</h2>
+      <img src="mage-emoji.png" alt="Mage Emoji" width="50">
+    </div>
   </div>
 
-  <div class="buttons">
-    <button onclick="produceMetalPlate()">Produce Metal Plate</button>
-    <button onclick="buyFactory()">Buy Factory</button>
-    <button onclick="buyScrewDuplicator()" id="screwDuplicatorButton" disabled>Buy Screw Duplicator</button>
+  <div id="homebase">
+    <h1>Welcome to your Home Base!</h1>
+    <p id="selected-character"></p>
   </div>
 
   <script src="script.js"></script>
