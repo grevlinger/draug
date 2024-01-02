@@ -48,4 +48,35 @@ function winBattle() {
 function loseBattle() {
   const battleLog = document.getElementById('battle-log');
   battleLog.innerHTML += '<p>You lost the battle. Try again!</p>';
-⬤
+  resetCharacter();
+}
+
+function levelUp() {
+  if (experience >= level * 30) {
+    level++;
+    health += 20;
+    energy += 10;
+    logBattle(`Level up! You are now level ${level}. Health and energy increased.`);
+  }
+}
+
+function updateCharacterInfo() {
+  const levelElement = document.getElementById('level');
+  const experienceElement = document.getElementById('experience');
+  const healthElement = document.getElementById('health');
+  const energyElement = document.getElementById('energy');
+
+  levelElement.textContent = level;
+  experienceElement.textContent = experience;
+  healthElement.textContent = health;
+  energyElement.textContent = energy;
+}
+
+function resetCharacter() {
+  level = 1;
+  experience = 0;
+  health = 100;
+  energy = 50;
+  updateCharacterInfo();
+  document.getElementById('battle-log').innerHTML = '';
+}
