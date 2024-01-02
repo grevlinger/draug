@@ -1,0 +1,28 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+#goldDisplay {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#button {
+  font-size: 18px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#upgrades {
+  margin-top: 20px;
+}
+
+.upgrade {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
