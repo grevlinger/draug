@@ -20,7 +20,7 @@ function buyUpgrade(upgrade) {
         gold -= 20;
         houses++;
         passiveIncome = houses; // Each house adds 1 to passive income
-        updateGoldDisplay();
+        updateGoldDisplay(1);
         addEmoji('🏠');
         if (!passiveIncomeInterval) {
           passiveIncomeInterval = setInterval(function () {
