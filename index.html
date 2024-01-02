@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hematron</title>
+  <title>Idle Game</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>Hematron autobot</h1>
-  <div id="goldDisplay">Metal Plates <span id="Metal Plates">0</span></div>
-  <button id="button" onclick="clickButton()">Metal Plates</button>
+  <h1>Idle Game</h1>
+  <div id="metalPlateDisplay">Metal Plates: <span id="metalPlates">0</span></div>
+  <button id="button" onclick="clickButton()">Click to Generate Metal Plates</button>
 
   <div id="upgrades">
-    <div id="houseUpgrade" class="upgrade" onclick="buyUpgrade('house')">Buy plate duplicator</div>
+    <div id="houseUpgrade" class="upgrade" onclick="buyUpgrade('house')">Buy Factory (20 Metal Plates)</div>
   </div>
 
   <script src="script.js"></script>
