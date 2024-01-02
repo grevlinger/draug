@@ -3,159 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matvareliste</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        #app {
-            max-width: 600px;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-        }
-
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 16px;
-            box-sizing: border-box;
-        }
-
-        button {
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        #ingredient-list {
-            margin-bottom: 20px;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        #meal {
-            margin-top: 20px;
-            font-weight: bold;
-            color: #333;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <title>Incremental Idle Game</title>
 </head>
 <body>
-    <div id="app">
-        <h1>Matvareliste</h1>
-
-        <div>
-            <label for="ingredient-name">Matvarenavn:</label>
-            <input type="text" id="ingredient-name" placeholder="Skriv inn matvarenavn">
-
-            <label for="ingredient-quantity">Kvantum (kilo):</label>
-            <input type="number" id="ingredient-quantity" placeholder="Skriv inn kvantum">
-
-            <button onclick="addIngredient()">Legg til</button>
+    <div class="game-container">
+        <div class="chat-box" id="output"></div>
+        <button onclick="clickGold()" id="clickButton">Click for Gold</button>
+        <div class="upgrades">
+            <button onclick="buyUpgrade('clickUpgrade')" id="clickUpgrade">Upgrade Click (+1 Gold per Click)</button>
+            <button onclick="buyUpgrade('passiveUpgrade')" id="passiveUpgrade">Upgrade Passive Income (+1 Gold per second)</button>
         </div>
-
-        <div id="ingredient-list">
-            <h2>Dine lagrede matvarer:</h2>
-            <ul id="ingredients"></ul>
-        </div>
-
-        <button onclick="generateMeal()">Generer matrett</button>
-        <p id="meal"></p>
     </div>
-
-    <script>
-        const ingredientList = [];
-
-        function addIngredient() {
-            const nameInput = document.getElementById('ingredient-name');
-            const quantityInput = document.getElementById('ingredient-quantity');
-
-            const name = nameInput.value.trim();
-            const quantity = quantityInput.value.trim();
-
-            if (name !== '' && quantity !== '' && !isNaN(quantity) && parseFloat(quantity) > 0) {
-                const ingredient = {
-                    name: name,
-                    quantity: parseFloat(quantity)
-                };
-
-                ingredientList.push(ingredient);
-                updateIngredientList();
-                nameInput.value = '';
-                quantityInput.value = '';
-            } else {
-                alert('Vennligst fyll ut gyldige verdier for matvarenavn og kvantum.');
-            }
-        }
-
-        function updateIngredientList() {
-            const ingredientsUl = document.getElementById('ingredients');
-            ingredientsUl.innerHTML = '';
-
-            ingredientList.forEach(ingredient => {
-                const li = document.createElement('li');
-                li.textContent = `${ingredient.name} (${ingredient.quantity} kg)`;
-                ingredientsUl.appendChild(li);
-            });
-        }
-
-        async function generateMeal() {
-            const mealParagraph = document.getElementById('meal');
-
-            if (ingredientList.length === 0) {
-                mealParagraph.textContent = 'Legg til matvarer først!';
-                return;
-            }
-
-            try {
-                const randomIngredient = ingredientList[Math.floor(Math.random() * ingredientList.length)];
-                const mealResponse = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${randomIngredient.name}`);
-                const mealData = await mealResponse.json();
-
-                if (mealData.meals && mealData.meals.length > 0) {
-                    const randomMeal = mealData.meals[Math.floor(Math.random() * mealData.meals.length)];
-                    mealParagraph.textContent = `Din tilfeldige matrett: ${randomMeal.strMeal}`;
-                } else {
-                    mealParagraph.textContent = 'Ingen matrett funnet for denne ingrediensen.';
-                }
-            } catch (error) {
-                console.error('Feil ved henting av matrett:', error);
-                mealParagraph.textContent = 'Noe gikk galt ved henting av matrett.';
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
