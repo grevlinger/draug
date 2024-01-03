@@ -1,11 +1,14 @@
 let co2 = 0;
 let clickValue = 1;
-let plantLevel = 1;
 let waterCount = 0;
 let hasStartedPassiveAbsorption = false;
 
 function updateDisplay() {
     document.getElementById('co2').textContent = co2.toFixed(5);
+}
+
+function showMessage(text) {
+    document.getElementById('message').textContent = text;
 }
 
 function waterPlant() {
@@ -16,6 +19,7 @@ function waterPlant() {
     if (waterCount === 1) {
         co2 = 0.00001;
         hasStartedPassiveAbsorption = true;
+        showMessage("It seems that my plant is absorbing CO2");
     } else if (hasStartedPassiveAbsorption) {
         // Increase CO2 absorption by 1% with each watering
         co2 += co2 * 0.01;
