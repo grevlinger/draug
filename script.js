@@ -8,7 +8,7 @@ function waterPlant() {
 
 function updateOxygenOutput() {
     const oxygenOutputElement = document.getElementById("oxygenOutput");
-    oxygenOutputElement.textContent = `Oxygen produced: ${oxygenProduction.toFixed(10)} molecules per second`;
+    oxygenOutputElement.textContent = `Oxygen produced: ${oxygenProduction.toExponential(10)} molecules per second`;
 }
 
 function logEvent(eventText) {
