@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Plant Watering Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Plant RPG</title>
 </head>
 <body>
-    <div class="game-container">
-        <button id="waterButton" onclick="waterPlant()">Water Plant</button>
-        <p id="oxygenOutput">Oxygen produced: 0 molecules per second</p>
-        <textarea id="eventLog" readonly></textarea>
+    <div id="container">
+        <h1>Plant RPG</h1>
+        <p>CO2: <span id="co2">0</span></p>
+        <p>Total Oxygen: <span id="totalOxygen">0</span></p>
+        <p>Level: <span id="level">1</span></p>
+        <p id="message"></p>
+        <button onclick="waterPlant()">Water the Plant</button>
     </div>
     <script src="script.js"></script>
 </body>
