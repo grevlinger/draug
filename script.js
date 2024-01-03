@@ -3,6 +3,7 @@ let co2 = 0;
 let clickValue = 1;
 let plantLevel = 1;
 let waterCount = 0;
+let hasStartedPassiveProduction = false;
 
 function updateDisplay() {
     document.getElementById('oxygen').textContent = oxygen.toFixed(5);
@@ -17,7 +18,8 @@ function waterPlant() {
     if (waterCount === 1) {
         oxygen = 0.00001;
         co2 = 0.00001;
-    } else {
+        hasStartedPassiveProduction = true;
+    } else if (hasStartedPassiveProduction) {
         // Increase oxygen production and CO2 absorption by 1% with each watering
         oxygen += oxygen * 0.01;
         co2 += co2 * 0.01;
@@ -28,7 +30,7 @@ function waterPlant() {
 
 // Automated oxygen and CO2 production every second
 setInterval(function () {
-    if (waterCount > 0) {
+    if (hasStartedPassiveProduction) {
         // Passive oxygen production after the first watering
         oxygen += plantLevel;
     }
