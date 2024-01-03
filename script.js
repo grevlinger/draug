@@ -1,5 +1,5 @@
-let oxygen = 0.0001;
-let co2 = 0.0001;
+let oxygen = 0.00001;
+let co2 = 0.00001;
 let clickValue = 1;
 let plantLevel = 1;
 let waterCount = 0;
@@ -25,8 +25,8 @@ setInterval(function () {
     oxygen += plantLevel;
 
     // Passive CO2 absorption
-    co2 -= waterCount * 0.0001;
-    oxygen += waterCount * 0.00005;
+    co2 -= waterCount * 0.00001;
+    oxygen += waterCount * 0.000005;
 
     updateDisplay();
 }, 1000);
