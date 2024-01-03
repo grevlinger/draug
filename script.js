@@ -28,7 +28,10 @@ function waterPlant() {
 
 // Automated oxygen and CO2 production every second
 setInterval(function () {
-    oxygen += plantLevel;
+    if (waterCount > 0) {
+        // Passive oxygen production after the first watering
+        oxygen += plantLevel;
+    }
 
     // Passive CO2 absorption
     co2 -= waterCount * 0.00001;
