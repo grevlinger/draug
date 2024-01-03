@@ -34,3 +34,13 @@ textarea {
     background-color: #555;
     color: #fff;
 }
+/* Existing styles... */
+
+html {
+    touch-action: manipulation;
+}
+
+/* Additional styles to disable double click zoom in Safari */
+body {
+    touch-action-delay: 1ms;
+}
