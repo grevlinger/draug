@@ -15,7 +15,7 @@ function waterPlant() {
 
     // Increase oxygen production and CO2 absorption by 1% with each watering
     oxygen *= 1.01;
-    co2 *= 1.01;
+    co2 *= 0.99; // Absorption increased, so subtracting a percentage
 
     updateDisplay();
 }
