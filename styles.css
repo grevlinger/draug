@@ -33,3 +33,33 @@ h1 {
 .button:hover {
     background-color: #4169e1; /* Darker shade on hover */
 }
+/* Your existing styles */
+
+#plant-container {
+    text-align: center;
+}
+
+#plant-image {
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.progress-container {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 20px;
+    width: 0;
+    background-color: #4caf50; /* Green progress color */
+}
+
+#evolution-options {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Add any additional styles as needed */
