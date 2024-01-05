@@ -3,8 +3,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const waterButton = document.getElementById("water-button");
     const evolutionOptions = document.getElementById("evolution-options");
     const happinessText = document.getElementById("happiness-text");
+    const passiveIncomeDiv = document.getElementById("passive-income");
+    const evolutionText = document.getElementById("evolution-text");
+    const evolutionImage = document.getElementById("evolution-image");
+    const manaCounter = document.getElementById("mana-counter");
 
     let happinessPercentage = 0;
+    let passiveIncome = 0.00001;
 
     waterButton.addEventListener("click", function () {
         if (happinessPercentage < 100) {
@@ -24,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateHappinessText() {
         if (happinessPercentage === 0) {
-            happinessText.textContent = "My plant does not look happy. I think it needs water";
+            happinessText.textContent = "My plant does not look happy. I think it needs water.";
         } else if (happinessPercentage >= 1 && happinessPercentage <= 20) {
             happinessText.textContent = "The plant is starting to feel better.";
         } else if (happinessPercentage > 20 && happinessPercentage <= 40) {
@@ -40,12 +45,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function showEvolutionOptions() {
         evolutionOptions.classList.remove("hidden");
-        happinessText.textContent = "Omg, the plant is about to evolve! What should I choose?";
     }
 
-    // Initially hide the evolution options
-    evolutionOptions.classList.add("hidden");
+    // Event listener for Evolution 1 button
+    document.getElementById("evolution1").addEventListener("click", function () {
+        evolveToManaPlant();
+    });
 
-    // Set initial happiness text
-    updateHappinessText();
+    function evolveToManaPlant() {
+        evolutionOptions.classList.add("hidden");
+        passiveIncomeDiv.classList.remove("hidden");
+
+        evolutionText.textContent = "My house plant evolved into a Mana Plant. It seems it produces mana...";
+        evolutionImage.src = "mana-plant-image.jpg";
+
+        // Start passive income for Mana Plant
+        setInterval(function () {
+            passiveIncome += 0.00001;
+            updateManaCounter();
+        }, 1000);
+    }
+
+    function updateManaCounter() {
+        manaCounter.textContent = passiveIncome.toFixed(5);
+    }
 });
