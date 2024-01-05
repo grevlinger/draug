@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
         passiveIncomeDiv.classList.remove("hidden");
 
         evolutionText.textContent = "My house plant evolved into a Mana Plant. It seems it produces mana...";
-        evolutionImage.src = "mana-plant-image.jpg";
+        evolutionImage.src = "IMG_0447.webp"; // Replace with the actual file path of the new image
 
         // Start passive income for Mana Plant
         setInterval(function () {
