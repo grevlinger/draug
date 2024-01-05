@@ -24,6 +24,9 @@ document.addEventListener("DOMContentLoaded", function () {
         evolutionOptions.classList.remove("hidden");
     }
 
+    // Initially hide the evolution options
+    evolutionOptions.classList.add("hidden");
+
     // Add event listeners for evolution buttons and navigate to corresponding pages
     document.getElementById("evolution1").addEventListener("click", function () {
         window.location.href = "evolution1-page.html";
