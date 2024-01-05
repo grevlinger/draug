@@ -4,6 +4,7 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #121212; /* Dark blue background color */
     color: #ffffff; /* White text color */
+    touch-action: manipulation; /* Disable zooming on double-click for iPhone Safari */
 }
 
 .container {
@@ -33,6 +34,7 @@ h1 {
 .button:hover {
     background-color: #4169e1; /* Darker shade on hover */
 }
+
 /* Your existing styles */
 
 #plant-container {
@@ -61,5 +63,3 @@ h1 {
     text-align: center;
     margin-top: 20px;
 }
-
-/* Add any additional styles as needed */
