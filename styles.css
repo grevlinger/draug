@@ -5,8 +5,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #121212; /* Mørk bakgrunnsfarge */
-  color: #ffffff; /* Hvit tekstfarge */
+  background-color: #121212;
+  color: #ffffff;
 }
 
 .container {
@@ -14,9 +14,13 @@ body {
 }
 
 .textbox {
-  background-color: #1f1f1f; /* Mørk boksfarge */
+  background-color: #1f1f1f;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+  display: none;
 }
 
