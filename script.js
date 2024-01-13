@@ -88,6 +88,10 @@ function manualLabor() {
   }
   updateGoldCounter();
 }
+function fillWallet() {
+  gold = walletLimit;
+  updateGoldCounter();
+}
 
 
 function updateGoldCounter() {
