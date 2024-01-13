@@ -40,7 +40,6 @@ body {
   padding: 20px;
   background-color: #333; /* Mørk boks med smooth edges for inventar */
   border-radius: 8px;
-  margin-left: 20px; /* Margin mellom teller og inventar */
 }
 
 h2 {
