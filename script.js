@@ -19,6 +19,10 @@ function makeChoice(choice, additionalText) {
   document.getElementById('buyWalletButton').style.display = 'block';
   document.getElementById('upgradeButton').style.display = hasShovel ? 'none' : 'block'; // Vis "Buy Shovel" kun hvis spaden ikke er kjøpt
 
+  if (choice === 'gainStrength') {
+    backgroundChoice = 'strenght'; // Sett bakgrunnsvalget til 'strenght' når man velger 'gainStrength'
+  }
+
   if (hasShovel) {
     document.getElementById('buyShovelButton').style.display = 'none'; // Skjuler "Buy Shovel"-knappen hvis spaden er kjøpt
   } else {
