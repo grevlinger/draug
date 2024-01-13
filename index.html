@@ -4,26 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Interactive Story</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
-<div id="storyBox">
-  <p>
-    The war has finally ended, but your family is dead. Your city has burned to the ground, and you fled to a nearby small village.
-    You find yourself begging on the street.
-  </p>
+<div id="contentContainer">
+  <div id="storyBox">
+    <p>
+      The war has finally ended, but your family is dead. Your city has burned to the ground, and you fled to a nearby small village.
+      You find yourself begging on the street.
+    </p>
+  </div>
+
+  <div id="inventoryBox">
+    <h2>Inventory</h2>
+    <ul>
+      <li>Small Wallet</li>
+    </ul>
+  </div>
 </div>
 
 <div id="counterContainer">
   <button id="counterButton">0/20</button>
-</div>
-
-<div id="inventoryBox">
-  <h2>Inventory</h2>
-  <ul>
-    <li>Small Wallet</li>
-  </ul>
 </div>
 
 <script src="script.js"></script>
