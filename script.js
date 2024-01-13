@@ -4,38 +4,38 @@ let walletLimit = 50; // Opprinnelig lommeboksgrense
 let walletCost = 50; // Kostnad for å kjøpe større lommebok
 let walletIncrease = 50; // Økning i lommeboksgrense ved kjøp
 
-
 function makeChoice(choice, additionalText) {
-  // Show the gold button and additional text box, and hide the story box
   document.getElementById('storyBox').style.display = 'none';
   document.getElementById('goldButton').style.display = 'block';
   document.getElementById('additionalText').innerHTML = additionalText;
-  document.getElementById('buyWalletButton').style.display = 'block'; // Show the "Buy Larger Wallet" button
-
-  // Set goldBonus based on the choice
+  document.getElementById('buyWalletButton').style.display = 'block';
+  
   switch (choice) {
     case 'earnGold':
-      goldBonus = 1.4; // 40% bonus
+      goldBonus = 1.4;
       break;
     default:
-      goldBonus = 1.0; // No bonus for other choices
+      goldBonus = 1.0;
       break;
   }
 }
 
-
 function earnGold() {
-  if (gold < 50) {
-    gold += goldBonus; // Adjusted for bonus
+  if (gold < walletLimit) {
+    gold += goldBonus;
+    if (gold > walletLimit) {
+      gold = walletLimit; // Begrens gullet til lommeboksgrensen
+    }
     updateGoldCounter();
   } else {
-    alert("You have reached the maximum gold limit!");
+    alert("Du har nådd den maksimale gullgrensen på " + walletLimit + "!");
   }
 }
+
 function buyWallet() {
   if (gold >= walletCost) {
     gold -= walletCost;
-    walletLimit += walletIncrease; // Øker lommeboksgrense
+    walletLimit += walletIncrease;
     updateGoldCounter();
   } else {
     alert("Du har ikke nok gull til å kjøpe en større lommebok!");
@@ -45,5 +45,3 @@ function buyWallet() {
 function updateGoldCounter() {
   document.getElementById('goldCounter').innerText = `${gold.toFixed(2)}/${walletLimit} (Bonus: ${((goldBonus - 1) * 100).toFixed(0)}%)`;
 }
-
-
