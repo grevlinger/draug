@@ -9,7 +9,7 @@ let upgradePurchased = false; // Oppgraderingens kjøpsstatus
 let shovelCost = 250;
 let hasShovel = false;
 let inventory = [];
-let strengthBonus = 1.4; // 40% bonus på strength
+let strengthBonus = 0.6; // 60% bonus på strength
 let manualLaborIncome = 3;
 
 function makeChoice(choice, additionalText) {
@@ -32,15 +32,18 @@ function makeChoice(choice, additionalText) {
   document.getElementById('manualLaborButton').style.display = 'block'; // Vis alltid "Manual Labor"
 
   switch (choice) {
+    case 'gainStrength':
+      backgroundChoice = 'strenght'; // Sett bakgrunnsvalget til 'strenght' når man velger 'gainStrength'
+      strengthBonus = 0.6; // Sett styrkebonus til 60%
+      break;
     case 'earnGold':
-      goldBonus = (backgroundChoice === 'strenght') ? 1.4 : 1.0; // Justert for styrkebonus
+      goldBonus = 1.0; // Ingen styrkebonus for "earnGold"
       break;
     default:
       goldBonus = 1.0;
       break;
   }
 }
-
 
 function earnGold() {
   if (gold < walletLimit) {
@@ -95,14 +98,13 @@ function showInventory() {
 }
 
 function manualLabor() {
-  let goldEarned = manualLaborIncome * ((backgroundChoice === 'strenght') ? (strengthBonus + 0.6) : 1); // Justert for styrkebonus
+  let goldEarned = manualLaborIncome * ((backgroundChoice === 'strength') ? (strengthBonus + 0.6) : 1); // Justert for styrkebonus
   gold += goldEarned;
   if (gold > walletLimit) {
     gold = walletLimit; // Begrens gullet til lommeboksgrensen
   }
   updateGoldCounter();
 }
-
 
 function fillWallet() {
   gold = walletLimit;
