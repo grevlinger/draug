@@ -90,7 +90,7 @@ function manualLabor() {
 }
 function fillWallet() {
   gold = walletLimit;
-  updateGoldCounter();
+  document.getElementById('goldCounter').innerText = `${gold.toFixed(2)}/${walletLimit} (Bonus: ${((goldBonus - 1) * 100).toFixed(0)}%)`;
 }
 
 
