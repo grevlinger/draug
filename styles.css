@@ -1,11 +1,19 @@
 body {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
   margin: 0;
   background-color: #262626; /* Mørk bakgrunnsfarge */
   color: #fff; /* Hvit tekstfarge */
+}
+
+#contentContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 #storyBox {
@@ -16,30 +24,12 @@ body {
   border-radius: 8px;
 }
 
-#counterContainer, #inventoryBox {
-  text-align: center;
-}
-
-#counterButton {
-  font-size: 16px;
-  padding: 10px;
-  cursor: pointer;
-  background-color: #444; /* Mørk knappfarge */
-  color: #fff; /* Hvit tekstfarge */
-  border: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-
-#counterButton:hover {
-  background-color: #555; /* Mørkere knappfarge ved hover */
-}
-
 #inventoryBox {
   max-width: 200px;
   padding: 20px;
   background-color: #333; /* Mørk boks med smooth edges for inventar */
   border-radius: 8px;
+  margin-left: 20px; /* Margin mellom tekstboks og inventar */
 }
 
 h2 {
@@ -58,4 +48,24 @@ li {
 
 li:last-child {
   border-bottom: none; /* Fjern linje på siste element */
+}
+
+#counterContainer {
+  text-align: center;
+  margin-top: 20px; /* Legg til margin over teller for å gi plass */
+}
+
+#counterButton {
+  font-size: 16px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #444; /* Mørk knappfarge */
+  color: #fff; /* Hvit tekstfarge */
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+#counterButton:hover {
+  background-color: #555; /* Mørkere knappfarge ved hover */
 }
