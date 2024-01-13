@@ -21,7 +21,10 @@ function makeChoice(choice, additionalText) {
   document.getElementById('upgradeButton').style.display = hasShovel ? 'none' : 'block'; // Vis "Buy Shovel" kun hvis spaden ikke er kjøpt
 
   if (choice === 'gainStrength') {
-    backgroundChoice = 'strenght'; // Sett bakgrunnsvalget til 'strenght' når man velger 'gainStrength'
+    backgroundChoice = 'strength'; // Rettet skrivefeil
+    strengthBonus = 0.6; // Sett styrkebonus til 60%
+  } else {
+    backgroundChoice = ''; // Tilbakestiller bakgrunnsvalget for andre valg
   }
 
   if (hasShovel) {
@@ -32,11 +35,7 @@ function makeChoice(choice, additionalText) {
 
   document.getElementById('manualLaborButton').style.display = 'block'; // Vis alltid "Manual Labor"
 
-   switch (choice) {
-    case 'gainStrength':
-      backgroundChoice = 'strenght'; // Sett bakgrunnsvalget til 'strenght' når man velger 'gainStrength'
-      strengthBonus = 0.6; // Sett styrkebonus til 60%
-      break;
+  switch (choice) {
     case 'earnGold':
       goldBonus = 1.0; // Ingen styrkebonus for "earnGold"
       document.getElementById('manualLaborButton').style.display = hasShovel ? 'block' : 'none'; // Vis "Manual Labor" kun hvis spaden er kjøpt
@@ -46,6 +45,7 @@ function makeChoice(choice, additionalText) {
       break;
   }
 }
+
 
 
 function earnGold() {
