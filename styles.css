@@ -16,6 +16,32 @@ body {
   border-radius: 8px;
 }
 
+#inventoryBox {
+  max-width: 400px;
+  padding: 20px;
+  background-color: #333; /* Mørk boks med smooth edges for inventar */
+  border-radius: 8px;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  border-bottom: 1px dotted #fff; /* Dotted linje mellom listeelementene */
+  padding: 8px 0;
+}
+
+li:last-child {
+  border-bottom: none; /* Fjern linje på siste element */
+}
+
 #counterContainer {
   text-align: center;
 }
