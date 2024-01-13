@@ -16,6 +16,10 @@ body {
   border-radius: 8px;
 }
 
+#counterContainer {
+  text-align: center;
+}
+
 #counterButton {
   font-size: 16px;
   padding: 10px;
