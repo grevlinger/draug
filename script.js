@@ -18,7 +18,12 @@ function makeChoice(choice, additionalText) {
   document.getElementById('additionalText').innerHTML = additionalText;
   document.getElementById('buyWalletButton').style.display = 'block';
   document.getElementById('upgradeButton').style.display = hasShovel ? 'none' : 'block'; // Vis "Buy Shovel" kun hvis spaden ikke er kjøpt
-  document.getElementById('buyShovelButton').style.display = hasShovel ? 'none' : 'block'; // Vis "Buy Shovel" kun hvis spaden ikke er kjøpt
+
+  if (hasShovel) {
+    document.getElementById('buyShovelButton').style.display = 'none'; // Skjuler "Buy Shovel"-knappen hvis spaden er kjøpt
+  } else {
+    document.getElementById('buyShovelButton').style.display = 'block'; // Vis "Buy Shovel"-knappen hvis spaden ikke er kjøpt
+  }
 
   switch (choice) {
     case 'earnGold':
@@ -29,6 +34,7 @@ function makeChoice(choice, additionalText) {
       break;
   }
 }
+
 
 function earnGold() {
   if (gold < walletLimit) {
