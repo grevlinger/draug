@@ -11,6 +11,7 @@ let hasShovel = false;
 let inventory = [];
 let strengthBonus = 0.6; // 60% bonus på strength
 let manualLaborIncome = 3;
+let hasShovel = false; // Legg til denne variabelen for å spore om spaden er kjøpt
 
 function makeChoice(choice, additionalText) {
   document.getElementById('storyBox').style.display = 'none';
@@ -31,13 +32,14 @@ function makeChoice(choice, additionalText) {
 
   document.getElementById('manualLaborButton').style.display = 'block'; // Vis alltid "Manual Labor"
 
-  switch (choice) {
+   switch (choice) {
     case 'gainStrength':
-      backgroundChoice = 'strenght'; // Sett bakgrunnsvalget til 'strenght' når man velger 'gainStrength'
+      backgroundChoice = 'strength'; // Sett bakgrunnsvalget til 'strenght' når man velger 'gainStrength'
       strengthBonus = 0.6; // Sett styrkebonus til 60%
       break;
     case 'earnGold':
       goldBonus = 1.0; // Ingen styrkebonus for "earnGold"
+      document.getElementById('manualLaborButton').style.display = hasShovel ? 'block' : 'none'; // Vis "Manual Labor" kun hvis spaden er kjøpt
       break;
     default:
       goldBonus = 1.0;
