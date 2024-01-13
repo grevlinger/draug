@@ -34,7 +34,7 @@ function makeChoice(choice, additionalText) {
 
    switch (choice) {
     case 'gainStrength':
-      backgroundChoice = 'strength'; // Sett bakgrunnsvalget til 'strenght' når man velger 'gainStrength'
+      backgroundChoice = 'strenght'; // Sett bakgrunnsvalget til 'strenght' når man velger 'gainStrength'
       strengthBonus = 0.6; // Sett styrkebonus til 60%
       break;
     case 'earnGold':
@@ -46,6 +46,7 @@ function makeChoice(choice, additionalText) {
       break;
   }
 }
+
 
 function earnGold() {
   if (gold < walletLimit) {
@@ -100,14 +101,15 @@ function showInventory() {
 }
 
 function manualLabor() {
-  let goldEarned = manualLaborIncome * ((backgroundChoice === 'strength') ? (strengthBonus + 0.6) : 1); // Justert for styrkebonus
-  gold += goldEarned;
-  if (gold > walletLimit) {
-    gold = walletLimit; // Begrens gullet til lommeboksgrensen
+  if (hasShovel) {
+    let goldEarned = manualLaborIncome * ((backgroundChoice === 'strenght') ? (strengthBonus + 0.6) : 1); // Justert for styrkebonus
+    gold += goldEarned;
+    if (gold > walletLimit) {
+      gold = walletLimit; // Begrens gullet til lommeboksgrensen
+    }
+    updateGoldCounter();
   }
-  updateGoldCounter();
 }
-
 function fillWallet() {
   gold = walletLimit;
   document.getElementById('goldCounter').innerText = `${gold.toFixed(2)}/${walletLimit} (Bonus: ${((goldBonus - 1) * 100).toFixed(0)}%)`;
