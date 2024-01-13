@@ -25,9 +25,11 @@ function makeChoice(choice, additionalText) {
     document.getElementById('buyShovelButton').style.display = 'block'; // Vis "Buy Shovel"-knappen hvis spaden ikke er kjøpt
   }
 
+  document.getElementById('manualLaborButton').style.display = 'block'; // Vis alltid "Manual Labor"
+
   switch (choice) {
     case 'earnGold':
-      goldBonus = 1.4;
+      goldBonus = (backgroundChoice === 'strenght') ? 1.4 : 1.0; // Justert for styrkebonus
       break;
     default:
       goldBonus = 1.0;
@@ -89,13 +91,14 @@ function showInventory() {
 }
 
 function manualLabor() {
-  let goldEarned = manualLaborIncome * (strengthBonus + 0.2); // 60% mer gull med styrkebonus
+  let goldEarned = manualLaborIncome * ((backgroundChoice === 'strenght') ? (strengthBonus + 0.6) : 1); // Justert for styrkebonus
   gold += goldEarned;
   if (gold > walletLimit) {
     gold = walletLimit; // Begrens gullet til lommeboksgrensen
   }
   updateGoldCounter();
 }
+
 
 function fillWallet() {
   gold = walletLimit;
