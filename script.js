@@ -8,7 +8,18 @@ function makeChoice(choice) {
       document.getElementById('storyBox').style.display = 'none';
       document.getElementById('goldButton').style.display = 'block';
       break;
-    // Add more cases for other choices
+    case 'gainStrength':
+      // Handle gainStrength choice
+      // Implement logic for gaining strength
+      break;
+    case 'enhanceIntelligence':
+      // Handle enhanceIntelligence choice
+      // Implement logic for enhancing intelligence
+      break;
+    case 'increaseSpeed':
+      // Handle increaseSpeed choice
+      // Implement logic for increasing speed
+      break;
   }
 }
 
