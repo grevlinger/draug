@@ -8,6 +8,14 @@ body {
   color: #fff; /* Hvit tekstfarge */
 }
 
+#storyBox {
+  max-width: 400px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #333; /* Mørk farge for tekstboksen */
+  border-radius: 8px;
+}
+
 #counterButton {
   font-size: 16px;
   padding: 10px;
