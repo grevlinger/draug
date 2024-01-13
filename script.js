@@ -18,6 +18,7 @@ function makeChoice(choice, additionalText) {
   document.getElementById('additionalText').innerHTML = additionalText;
   document.getElementById('buyWalletButton').style.display = 'block';
   document.getElementById('upgradeButton').style.display = hasShovel ? 'none' : 'block'; // Vis "Buy Shovel" kun hvis spaden ikke er kjøpt
+  document.getElementById('buyShovelButton').style.display = hasShovel ? 'none' : 'block'; // Vis "Buy Shovel" kun hvis spaden ikke er kjøpt
 
   switch (choice) {
     case 'earnGold':
@@ -67,12 +68,13 @@ function buyShovel() {
     hasShovel = true;
     inventory.push("Shovel");
     updateGoldCounter();
-    document.getElementById('upgradeButton').style.display = 'none'; // Skjuler "Buy Shovel"-knappen etter kjøpet
+    document.getElementById('buyShovelButton').style.display = 'none'; // Skjuler "Buy Shovel"-knappen etter kjøpet
     showInventory();
   } else {
     alert("Du har ikke nok gull eller har allerede kjøpt spaden!");
   }
 }
+
 
 function showInventory() {
   document.getElementById('inventoryBox').style.display = 'block';
