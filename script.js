@@ -27,9 +27,7 @@ function earnGold() {
       gold = walletLimit; // Begrens gullet til lommeboksgrensen
     }
     updateGoldCounter();
-  } else {
-    alert("Du har nådd den maksimale gullgrensen på " + walletLimit + "!");
-  }
+  } 
 }
 
 function buyWallet() {
