@@ -1,1 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Survival Game</title>
+</head>
+<body>
 
+<div class="container">
+    <div id="game-text">
+        <p>War has been raging over the continent for the last few years. The war is now over, but your city is destroyed and your family dead. You find yourself in a nearby village begging for money.</p>
+    </div>
+    <div id="gold-container">
+        <p id="gold-text">Gold: <span id="gold">0</span></p>
+        <button id="generateGoldBtn" onclick="generateGold()">Generate Gold</button>
+    </div>
+    <div id="inventory-container">
+        <p>Inventory:</p>
+        <ul id="inventory-list">
+            <li>Small Wallet</li>
+        </ul>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
