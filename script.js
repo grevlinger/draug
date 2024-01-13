@@ -89,7 +89,7 @@ function showInventory() {
 }
 
 function manualLabor() {
-  let goldEarned = manualLaborIncome * (strengthBonus * 1.2); // 60% mer gull med styrkebonus
+  let goldEarned = manualLaborIncome * (strengthBonus + 0.2); // 60% mer gull med styrkebonus
   gold += goldEarned;
   if (gold > walletLimit) {
     gold = walletLimit; // Begrens gullet til lommeboksgrensen
