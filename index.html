@@ -10,6 +10,14 @@
   <div class="container">
     <div class="textbox" id="storyBox">
       <p>War has torn the continent apart. Whole cities have been pillaged and burned to the ground. You are the only survivor from your family.</p>
+      <button onclick="makeChoice('earnGold')">Choose Path 1</button>
+      <button onclick="makeChoice('gainStrength')">Choose Path 2</button>
+      <button onclick="makeChoice('enhanceIntelligence')">Choose Path 3</button>
+      <button onclick="makeChoice('increaseSpeed')">Choose Path 4</button>
+    </div>
+    <div class="hidden" id="goldButton">
+      <button onclick="earnGold()">Earn Gold</button>
+      <p id="goldCounter">0/50</p>
     </div>
   </div>
   <script src="script.js"></script>
