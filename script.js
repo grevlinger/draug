@@ -28,7 +28,16 @@ function makeChoice(choice, additionalText) {
     document.getElementById('buyShovelButton').style.display = 'block'; // Vis "Buy Shovel"-knappen hvis spaden ikke er kjøpt
   }
 
-  document.getElementById('manualLaborButton').style.display = 'block'; // Vis alltid "Manual Labor"
+  document.getElementById('manualLaborButton').style.display = hasShovel ? 'block' : 'none'; // Vis "Manual Labor" kun hvis spaden er kjøpt
+
+  switch (choice) {
+    case 'earnGold':
+      goldBonus = 1.0; // Ingen styrkebonus for "earnGold"
+      break;
+    default:
+      goldBonus = 1.0;
+      break;
+  }
 }
 
 function earnGold() {
