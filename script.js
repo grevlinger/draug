@@ -10,7 +10,7 @@ function generateIncome() {
 }
 
 function updateIncomeDisplay() {
-    document.getElementById('income-display').innerText = '$' + income;
+    document.getElementById('income-display').innerText = income + 'gold';
 }
 
 // Additional JavaScript logic for inventory, shop, upgrades, etc. can be added here.
