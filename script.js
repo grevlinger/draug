@@ -39,3 +39,6 @@ function updateInventory() {
     // document.getElementById('sell-btn').disabled = true;
   }
 }
+document.addEventListener('dblclick', function(event) {
+  event.preventDefault(); // Forhindrer uønsket zooming ved dobbeltklikk
+});
