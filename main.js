@@ -35,6 +35,10 @@ if (savegame !== null) {
 
 function resetGame() {
   if (confirm("Are you sure you want to reset the game?")) {
+    // Clear intervals
+    clearInterval(mainGameLoop);
+    clearInterval(saveGameLoop);
+
     // Reset game data
     gameData = {
       gold: 0,
@@ -53,6 +57,15 @@ function resetGame() {
     document.getElementById("perClickUpgrade").innerHTML = "Upgrade Pickaxe (Level 1) Cost: 10 Gold";
     document.getElementById("perSecondUpgrade").innerHTML = "Upgrade Mining Rig (Level 1) Cost: 50 Gold";
     document.getElementById("doubleGoldUpgrade").innerHTML = "Double Gold Output Cost: 100 Gold";
+
+    // Restart main game loop and save game loop
+    mainGameLoop = window.setInterval(function () {
+      mineGold();
+    }, 1000);
+
+    saveGameLoop = window.setInterval(function () {
+      localStorage.setItem("goldMinerSave", JSON.stringify(gameData));
+    }, 15000);
   }
 }
 
