@@ -1,16 +1,23 @@
-function goToStore() {
+function changeContent(destination) {
     hideAll();
-    document.getElementById('store').style.display = 'block';
-}
+    
+    var contentDiv = document.getElementById('content');
+    contentDiv.style.display = 'block';
 
-function goToTavern() {
-    hideAll();
-    document.getElementById('tavern').style.display = 'block';
-}
-
-function goToCityHall() {
-    hideAll();
-    document.getElementById('cityHall').style.display = 'block';
+    // Dynamically set the content based on the destination
+    switch (destination) {
+        case 'store':
+            contentDiv.innerHTML = '<h2>You are in the store!</h2>';
+            break;
+        case 'tavern':
+            contentDiv.innerHTML = '<h2>You are in the tavern!</h2>';
+            break;
+        case 'cityHall':
+            contentDiv.innerHTML = '<h2>You are in the city hall!</h2>';
+            break;
+        default:
+            break;
+    }
 }
 
 function goBack() {
@@ -20,6 +27,5 @@ function goBack() {
 
 function hideAll() {
     document.getElementById('mainView').style.display = 'none';
-    document.getElementById('store').style.display = 'none';
-    document.getElementById('tavern').style.display = 'none';
-    document.getElementById('cityHall').style.display = 'none';
+    document.getElementById('content').style.display = 'none';
+}
