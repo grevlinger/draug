@@ -26,6 +26,7 @@ function buyMediumWallet() {
   maxGold = 50;
   updateInventory('mediumWalletItem', 'Medium Wallet');
   document.getElementById('buyMediumWallet').style.display = 'none';
+  updateCounterDisplay(); // Oppdaterer telleren etter kjøp av Medium Wallet
 }
 
 function buySmallDagger() {
