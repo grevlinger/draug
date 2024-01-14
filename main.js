@@ -32,6 +32,7 @@ if (savegame !== null) {
   gameData = savegame
 }
 function resetGame() {
+  console.log("Resetting the game"); 
   if (confirm("Are you sure you want to reset the game?")) {
     // Reset game data
     gameData = {
