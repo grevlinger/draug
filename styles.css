@@ -3,6 +3,8 @@ body {
   color: #ffffff;
   font-family: 'Arial', sans-serif;
   text-align: center;
+  touch-action: pan-x pan-y; /* Reduserer uønsket zooming ved dobbeltklikk */
+  user-select: none; /* Hindrer markeri
 }
 
 #game-container {
@@ -11,6 +13,8 @@ body {
   padding: 20px;
   background-color: #333333;
   border-radius: 10px;
+  touch-action: pan-x pan-y; /* Reduserer uønsket zooming ved dobbeltklikk */
+  user-select: none; /* Hindrer markeri
 }
 
 button {
