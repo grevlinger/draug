@@ -1,15 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Gold Miner</title>
-  </head>
-  <body>
-   <p id="goldMined">0 Gold Mined</p>
-    <button onclick="mineGold()">Mine Gold</button>
-    <button onclick="buyGoldPerClick()" id="perClickUpgrade">Upgrade Pickaxe (Currently Level 1) Cost: 10 Gold</button>
-     <button onclick="resetGame()">Reset Game</button>
-    <script src="main.js" charset="utf-8" type="text/javascript"></script>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adventure Quest</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="game-container">
+  <h1>Adventure Quest</h1>
+  <p>Welcome to the world of adventures! Choose your character class wisely.</p>
+  
+  <button onclick="chooseClass('warrior')" class="class-button">Choose Warrior</button>
+  <button onclick="chooseClass('mage')" class="class-button">Choose Mage</button>
+  <button onclick="chooseClass('rogue')" class="class-button">Choose Rogue</button>
+
+  <div id="result"></div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
 </html>
