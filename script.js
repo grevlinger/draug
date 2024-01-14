@@ -1,8 +1,9 @@
 let counter = 0;
 let gold = 0;
+let maxGold = 20; // Initial max gold value
 
 function increaseCounter() {
-  if (counter < 20) {
+  if (counter < maxGold) {
     counter++;
     updateCounterDisplay();
   }
@@ -23,7 +24,7 @@ function buyItem(item, cost) {
 
 function buyMediumWallet() {
   maxGold = 50;
-  updateInventory('smallWalletItem', 'Medium Wallet');
+  updateInventory('mediumWalletItem', 'Medium Wallet');
   document.getElementById('buyMediumWallet').style.display = 'none';
 }
 
