@@ -6,8 +6,8 @@ document.getElementById('steal-button').addEventListener('click', function() {
 });
 
 function generateIncome() {
-    income += 1; // Increment income on each click. You can adjust this based on your game balance.
-     if (income > maxGold) {
+    income += 1; // Increment income by 1 on each click
+    if (income > maxGold) {
         income = maxGold; // Cap the income to the maximum gold amount
     }
     updateIncomeDisplay();
