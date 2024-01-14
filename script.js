@@ -1,21 +1,34 @@
-let income = 0;
-let maxGold = 20; // Set your desired maximum gold amount
+let coins = 0;
+let purse = 0;
+let apples = 0;
 
-document.getElementById('steal-button').addEventListener('click', function() {
-    generateIncome();
-});
+document.getElementById('apple-btn').addEventListener('click', generateApples);
+document.getElementById('sell-btn').addEventListener('click', sellApples);
 
-function generateIncome() {
-    income += 1; // Increment income by 1 on each click
-    if (income > maxGold) {
-        income = maxGold; // Cap the income to the maximum gold amount
-    }
-    updateIncomeDisplay();
+function generateApples() {
+  apples += 1;
+  updateInventory();
 }
 
-function updateIncomeDisplay() {
-    document.getElementById('income-display').innerText = 'Gold:' + income;
+function sellApples() {
+  if (apples > 0) {
+    coins += apples;
+    purse += apples;
+    apples = 0;
+    updateCoins();
+    updatePurse();
+    updateInventory();
+  }
 }
 
-// Additional JavaScript logic for inventory, shop, upgrades, etc. can be added here.
-// Remember to adjust the HTML and CSS accordingly.
+function updateCoins() {
+  document.getElementById('coins').innerText = coins;
+}
+
+function updatePurse() {
+  document.getElementById('purse').innerText = purse;
+}
+
+function updateInventory() {
+  document.getElementById('apple-btn').innerText = `Generate Apples (${apples})`;
+}
