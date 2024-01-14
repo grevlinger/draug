@@ -1,44 +1,24 @@
-let apples = 0;
-let gold = 0;
-let maxGold = 20;
+let points = 0;
 
-function stealApples() {
-  if (apples < 10) {
-    const stolen = Math.floor(Math.random() * 3) + 1;
-    apples += stolen;
-    updateInventory();
-    document.getElementById('result').innerText = `You successfully stole ${stolen} apples.`;
+function incrementPoints() {
+  points++;
+  updatePointsDisplay();
+}
+
+function buyUpgrade(cost, increase) {
+  if (points >= cost) {
+    points -= cost;
+    incrementPointsByValue(increase);
+    updatePointsDisplay();
   } else {
-    document.getElementById('result').innerText = "Your inventory is full. Sell some apples to make space.";
+    alert("Not enough points to buy this upgrade!");
   }
 }
 
-function sellApples() {
-  if (apples > 0) {
-    const sold = Math.floor(Math.random() * apples) + 1;
-    const earnedGold = sold * 2; // Adjust gold earning logic as needed
-    gold += earnedGold;
-    apples -= sold;
-    updateInventory();
-    document.getElementById('result').innerText = `You sold ${sold} apples and earned ${earnedGold} gold.`;
-  } else {
-    document.getElementById('result').innerText = "You don't have any apples to sell. Steal some first!";
-  }
+function incrementPointsByValue(value) {
+  points += value;
 }
 
-function updateInventory() {
-  document.getElementById('apple-count').innerText = apples;
-  document.getElementById('gold-count').innerText = gold;
-
-  // Check if the player has reached the maximum gold limit
-  if (gold >= maxGold) {
-    document.getElementById('result').innerText = "You've reached the maximum gold limit!";
-    // Optionally, you may want to disable certain actions when the limit is reached
-    // For example, disable the "Steal Apples" and "Sell Apples" buttons
-    // document.getElementById('steal-btn').disabled = true;
-    // document.getElementById('sell-btn').disabled = true;
-  }
+function updatePointsDisplay() {
+  document.getElementById('points').innerText = points;
 }
-document.addEventListener('dblclick', function(event) {
-  event.preventDefault(); // Forhindrer uønsket zooming ved dobbeltklikk
-});
