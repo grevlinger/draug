@@ -1,6 +1,6 @@
 let apples = 0;
 let gold = 0;
-const maxGold = 20;
+let maxGold = 20;
 
 function stealApples() {
   if (apples < 10) {
