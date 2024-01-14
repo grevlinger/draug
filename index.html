@@ -9,14 +9,21 @@
 <body>
   <h1>Astrum Umbra</h1>
   <p>War has been raging across the continent for years. <br> You have lost your family, and your hometown lays in ruins. <br> You have traveled to a nearby village to start a new life.</p>
-     <div id="mainView">
+      <div id="mainView">
         <button onclick="changeContent('store')">Go to the store</button>
         <button onclick="changeContent('tavern')">Go to the tavern</button>
         <button onclick="changeContent('cityHall')">Go to the city hall</button>
+        <button onclick="showInventory()">Inventory</button>
     </div>
 
     <div id="content" style="display: none;">
         <!-- Content will be dynamically inserted here -->
+        <button onclick="goBack()">Go back to the main view</button>
+    </div>
+
+    <div id="inventory" style="display: none;">
+        <h2>Inventory</h2>
+        <ul id="itemList"></ul>
         <button onclick="goBack()">Go back to the main view</button>
     </div>
 
