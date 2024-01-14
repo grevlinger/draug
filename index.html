@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Astrum Umbra</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Interactive Story</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
@@ -20,12 +20,19 @@
     <div id="counterContainer">
       <button id="counterButton">0/20</button>
     </div>
+
+    <div id="shopContainer">
+      <h2>Shop</h2>
+      <button id="buyMediumWallet" onclick="buyItem('mediumWallet', 20)">Buy Medium Wallet (Cost: 20 gold)</button>
+      <button id="buySmallDagger" onclick="buyItem('smallDagger', 50)">Buy Small Dagger (Cost: 50 gold)</button>
+    </div>
   </div>
 
   <div id="inventoryBox">
     <h2>Inventory</h2>
     <ul>
-      <li>Small Wallet</li>
+      <li id="smallWalletItem">Small Wallet</li>
+      <li id="smallDaggerItem">Small Dagger</li>
     </ul>
   </div>
 </div>
