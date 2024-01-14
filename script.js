@@ -1,5 +1,9 @@
 let income = 0;
 
+document.getElementById('steal-button').addEventListener('click', function() {
+    generateIncome();
+});
+
 function generateIncome() {
     income += 1; // Increment income on each click. You can adjust this based on your game balance.
     updateIncomeDisplay();
