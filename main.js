@@ -31,3 +31,29 @@ var savegame = JSON.parse(localStorage.getItem("goldMinerSave"))
 if (savegame !== null) {
   gameData = savegame
 }
+// ... (previous code)
+
+function resetGame() {
+  if (confirm("Are you sure you want to reset the game?")) {
+    // Reset game data
+    gameData = {
+      gold: 0,
+      goldPerClick: 1,
+      goldPerClickCost: 10,
+      goldPerSecond: 0,
+      goldPerSecondCost: 50,
+      doubleGoldCost: 100
+    };
+
+    // Clear local storage
+    localStorage.removeItem("goldMinerSave");
+
+    // Update UI
+    document.getElementById("goldMined").innerHTML = "0 Gold Mined";
+    document.getElementById("perClickUpgrade").innerHTML = "Upgrade Pickaxe (Level 1) Cost: 10 Gold";
+    document.getElementById("perSecondUpgrade").innerHTML = "Upgrade Mining Rig (Level 1) Cost: 50 Gold";
+    document.getElementById("doubleGoldUpgrade").innerHTML = "Double Gold Output Cost: 100 Gold";
+  }
+}
+
+// ... (rest of the code)
