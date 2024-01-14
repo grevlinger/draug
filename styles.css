@@ -3,10 +3,18 @@ body {
   color: #fff;
   font-family: 'Helvetica', sans-serif;
 }
-h1 {
-  color: #3498db;
-  text-align: center;
+h1, h2 {
+    color: #3498db;
 }
-p {
-  text-align: center;
+
+button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2079b0;
 }
