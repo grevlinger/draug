@@ -34,3 +34,7 @@ button:hover {
 #result {
   margin-top: 20px;
 }
+
+  touch-action: pan-x pan-y; /* Reduserer uønsket zooming ved dobbeltklikk */
+  user-select: none; /* Hindrer markering av tekst ved dobbeltklikking */
+}
