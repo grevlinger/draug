@@ -31,21 +31,3 @@ var savegame = JSON.parse(localStorage.getItem("goldMinerSave"))
 if (savegame !== null) {
   gameData = savegame
 }
-function resetGame() {
-  console.log("Resetting the game"); 
-  if (confirm("Are you sure you want to reset the game?")) {
-    // Reset game data
-    gameData = {
-      gold: 0,
-      goldPerClick: 1,
-      goldPerClickCost: 10
-    };
-
-    // Update display
-    document.getElementById("goldMined").innerHTML = "0 Gold Mined";
-    document.getElementById("perClickUpgrade").innerHTML = "Upgrade Pickaxe (Currently Level 1) Cost: 10 Gold";
-
-    // Save the reset game data to localStorage
-    localStorage.setItem("goldMinerSave", JSON.stringify(gameData));
-  }
-}
