@@ -15,7 +15,7 @@ body {
   background-color: #1f1f1f;
 }
 
-.class-button {
+.choice-button {
   padding: 10px 20px;
   margin: 10px;
   font-size: 16px;
@@ -27,6 +27,6 @@ body {
   transition: background-color 0.3s;
 }
 
-.class-button:hover {
+.choice-button:hover {
   background-color: #555;
 }
