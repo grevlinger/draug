@@ -9,5 +9,27 @@
 <body>
   <h1>Astrum Umbra</h1>
   <p>War has been raging across the continent for years. <br> You have lost your family, and your hometown lays in ruins. <br> You have traveled to a nearby village to start a new life.</p>
+   <div id="hovedvisning">
+        <button onclick="gåTilButikk()">Gå til butikk</button>
+        <button onclick="gåTilTaverne()">Gå til taverne</button>
+        <button onclick="gåTilRådhuset()">Gå til rådhuset</button>
+    </div>
+
+    <div id="butikk" style="display: none;">
+        <h2>Du er i butikken!</h2>
+        <button onclick="gåTilbake()">Gå tilbake til hovedvisningen</button>
+    </div>
+
+    <div id="taverne" style="display: none;">
+        <h2>Du er i tavernen!</h2>
+        <button onclick="gåTilbake()">Gå tilbake til hovedvisningen</button>
+    </div>
+
+    <div id="rådhuset" style="display: none;">
+        <h2>Du er i rådhuset!</h2>
+        <button onclick="gåTilbake()">Gå tilbake til hovedvisningen</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
