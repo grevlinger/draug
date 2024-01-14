@@ -9,25 +9,25 @@
 <body>
   <h1>Astrum Umbra</h1>
   <p>War has been raging across the continent for years. <br> You have lost your family, and your hometown lays in ruins. <br> You have traveled to a nearby village to start a new life.</p>
-   <div id="hovedvisning">
-        <button onclick="gåTilButikk()">Gå til butikk</button>
-        <button onclick="gåTilTaverne()">Gå til taverne</button>
-        <button onclick="gåTilRådhuset()">Gå til rådhuset</button>
+    <div id="mainView">
+        <button onclick="goToStore()">Go to the store</button>
+        <button onclick="goToTavern()">Go to the tavern</button>
+        <button onclick="goToCityHall()">Go to the city hall</button>
     </div>
 
-    <div id="butikk" style="display: none;">
-        <h2>Du er i butikken!</h2>
-        <button onclick="gåTilbake()">Gå tilbake til hovedvisningen</button>
+    <div id="store" style="display: none;">
+        <h2>You are in the store!</h2>
+        <button onclick="goBack()">Go back to the main view</button>
     </div>
 
-    <div id="taverne" style="display: none;">
-        <h2>Du er i tavernen!</h2>
-        <button onclick="gåTilbake()">Gå tilbake til hovedvisningen</button>
+    <div id="tavern" style="display: none;">
+        <h2>You are in the tavern!</h2>
+        <button onclick="goBack()">Go back to the main view</button>
     </div>
 
-    <div id="rådhuset" style="display: none;">
-        <h2>Du er i rådhuset!</h2>
-        <button onclick="gåTilbake()">Gå tilbake til hovedvisningen</button>
+    <div id="cityHall" style="display: none;">
+        <h2>You are in the city hall!</h2>
+        <button onclick="goBack()">Go back to the main view</button>
     </div>
 
     <script src="script.js"></script>
