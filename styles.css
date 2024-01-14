@@ -5,6 +5,7 @@ body {
 }
 h1, h2 {
     color: #3498db;
+  text-align: center;
 }
 
 button {
@@ -13,6 +14,7 @@ button {
     padding: 10px;
     margin: 5px;
     cursor: pointer;
+  text-align: center;
 }
 
 button:hover {
