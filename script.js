@@ -1,6 +1,7 @@
 // script.js
 
 var inventory = []; // Array to store items in the inventory
+var gold = 20; // Initial gold amount
 
 function changeContent(destination) {
     hideAll();
@@ -26,18 +27,27 @@ function changeContent(destination) {
 function showStore() {
     var contentDiv = document.getElementById('content');
     contentDiv.innerHTML = '<h2>Welcome to the store!</h2>' +
+                           '<p>Gold: ' + gold + '</p>' +
                            '<button onclick="buyItem(\'Sword\', 10)">Buy Sword (10 gold)</button>' +
                            '<button onclick="buyItem(\'Shield\', 5)">Buy Shield (5 gold)</button>';
 }
 
 function buyItem(itemName, cost) {
-    // Simulating a purchase by deducting the cost from gold (not implemented)
-    
-    // Add the item to the inventory
-    inventory.push(itemName);
-    
-    // Show a message indicating the purchase
-    alert('You bought a ' + itemName + '!');
+    if (gold >= cost) {
+        // Deduct the cost from gold
+        gold -= cost;
+
+        // Add the item to the inventory
+        inventory.push(itemName);
+
+        // Show a message indicating the purchase
+        alert('You bought a ' + itemName + '!');
+
+        // Update the store view
+        showStore();
+    } else {
+        alert('Not enough gold to buy ' + itemName + '!');
+    }
 }
 
 function showInventory() {
