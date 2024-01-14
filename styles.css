@@ -1,44 +1,23 @@
 body {
-  background-color: #1a1a1a;
-  color: #ffffff;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   text-align: center;
-  touch-action: pan-x pan-y; /* Reduserer uønsket zooming ved dobbeltklikk */
-  user-select: none; /* Hindrer markeri
 }
 
 #game-container {
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: #333333;
-  border-radius: 10px;
-  touch-action: pan-x pan-y; /* Reduserer uønsket zooming ved dobbeltklikk */
-  user-select: none; /* Hindrer markeri
+  margin: 50px;
 }
 
-button {
-  background-color: #444444;
-  color: #ffffff;
-  padding: 10px 20px;
+#points {
+  font-size: 24px;
+}
+
+#shop-container {
+  margin-top: 20px;
+}
+
+.upgrade {
+  border: 1px solid #333;
+  padding: 10px;
   margin: 5px;
-  border: none;
-  border-radius: 5px;
   cursor: pointer;
-}
-
-button:hover {
-  background-color: #555555;
-}
-
-#inventory {
-  margin-top: 20px;
-}
-
-#result {
-  margin-top: 20px;
-}
-
-  touch-action: pan-x pan-y; /* Reduserer uønsket zooming ved dobbeltklikk */
-  user-select: none; /* Hindrer markering av tekst ved dobbeltklikking */
 }
